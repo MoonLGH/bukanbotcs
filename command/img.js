@@ -26,30 +26,38 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .setColor(color);
 
     const embedsend = await msg.channel.send(embed)
-    await embedsend.react("⏮️")
-    await embedsend.react("⏭️")
+    await embedsend.react("🗑️")
+    await embedsend.react("⬅");
+    await embedsend.react("➡");
 
-    client.on('messageReactionAdd', async (reaction, user) => {
-        if(reaction == "⏭️"){
-            if(index !== image.length){
-                index += 1
-            }else if(index == image.length){
+    const deleteFilter = (reaction, user) =>
+        reaction.emoji.name === `🗑️` && user.id === msg.author.id;
 
-            }
-        }else if(reaction  == "⏮️"){
-            if(index !== 1){
-                index -= 1
-            }
-        }
-        let edited = new D.MessageEmbed()
-            .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-            .setTimestamp()
-            .setDescription(`Dari ${image[index].from}`)
-            .setImage(image[index].imageurl)
-            .setFooter(`${index} / ${image.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-            .setColor(color);
+    const backwardsFilter = (reaction, user) =>
+        reaction.emoji.name === `⬅` && user.id === msg.author.id;
 
-        await reaction.message.edit(edited)
+    const forwardsFilter = (reaction, user) =>
+        reaction.emoji.name === `➡` && user.id === msg.author.id;
+
+        const backwards = embedsend.createReactionCollector(backwardsFilter);
+        const deletes = embedsend.createReactionCollector(deleteFilter);
+        const forwards = embedsend.createReactionCollector(forwardsFilter);
+        
+    deletes.on("collect", async f => {
+        embedsend.delete();
     })
 
+    forwards.on("collect",async f =>{
+        if(index <= image.length){
+            index += 1
+        }
+        embedsend.edit(embed)
+    })
+    
+    backwards.on("collect",async f =>{
+        if(index => 1){
+            index -= 1
+        }
+        embedsend.edit(embed)
+    })
 }
