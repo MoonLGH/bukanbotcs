@@ -1,0 +1,35 @@
+{
+  "name": "klinson-bot",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000C\u0000l\u0000e\u0000a\u0000n\u0000s\u0000o\u0000u\u0000n\u0000d\u0000B\u0000o\u0000t\u0000\r\u0000 \u0000#\u0000 \u0000C\u0000l\u0000e\u0000a\u0000n\u0000s\u0000o\u0000u\u0000n\u0000d\u0000B\u0000o\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "discord.js": "^12.3.1",
+    "nana-api": "^1.1.3" 
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoonLGH/CleansoundBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoonLGH/CleansoundBot/issues"
+  },
+  "homepage": "https://github.com/MoonLGH/CleansoundBot#readme",
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1"
+  }
+}
