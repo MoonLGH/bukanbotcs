@@ -1,3 +1,5 @@
+const config = require("../config.json")
+const prefix = config.prefix
 exports.execute = function (msg, command, args, client, D, perm, color, cd) {
     const normal = new D.MessageEmbed()
         .setTitle('General Command')

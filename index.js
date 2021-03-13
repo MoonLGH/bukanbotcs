@@ -431,8 +431,6 @@ client.on("message", async (msg) => {
             .setTimestamp()
             .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256');
         msg.channel.send(about)
-    } else if (command == "help") {
-        
     } else if (command == "peluk") {
 
         const Mentuser = msg.mentions.users.first()
