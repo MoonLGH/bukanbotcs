@@ -51,6 +51,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         if(index <= image.length){
             index += 1
         }
+        console.log(index)
         embedsend.edit(embed)
     })
     
@@ -58,6 +59,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         if(index => 1){
             index -= 1
         }
+        console.log(index)
         embedsend.edit(embed)
     })
 }
