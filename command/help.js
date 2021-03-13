@@ -70,7 +70,7 @@ exports.execute = function (msg, command, args, client, D, perm, color, cd) {
 
 
 
-    if (cooldownhelp.has(msg.author.id)) {
+    if (cd.cooldownhelp.has(msg.author.id)) {
         msg.delete({
             timeout: 5000
         })
