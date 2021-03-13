@@ -28,4 +28,28 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     const embedsend = await msg.channel.send(embed)
     await embedsend.react("⏮️")
     await embedsend.react("⏭️")
+
+    client.on('messageReactionAdd', async (reaction, user) => {
+        if(reaction == "⏭️"){
+            if(index !== image.length){
+                index += 1
+            }else if(index == image.length){
+
+            }
+        }else if(reaction  == "⏮️"){
+            if(index !== 1){
+                index -= 1
+            }
+        }
+        let embed = new D.MessageEmbed()
+            .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .setTimestamp()
+            .setDescription(`Dari ${image[index].from}`)
+            .setImage(image[index].imageurl)
+            .setFooter(`${index} / ${image.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .setColor(color);
+
+        await reaction.message.edit(embed)
+    })
+
 }

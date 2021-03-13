@@ -748,7 +748,7 @@ client.on("message", async (msg) => {
             .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color)
         msg.channel.send(embed)
-    } 
+    }
 })
 
 
