@@ -1,7 +1,11 @@
-exports.cooldown = new Set();
-exports.cooldowncf = new Set()
-exports.cooldownhelp = new Set()
-exports.cooldownhost = new Set()
-exports.cooldownsaran = new Set()
-exports.cooldownlapor = new Set()
-exports.cooldownt = new Set();
+const cooldown = new Set();
+const cooldowncf = new Set()
+const cooldownhelp = new Set()
+const cooldownhost = new Set()
+const cooldownsaran = new Set()
+const cooldownlapor = new Set()
+const cooldownt = new Set();
+
+module.exports= function(){
+    return{cooldown:cooldown,cooldowncf:cooldowncf,cooldownhelp:cooldownhelp,cooldownhost:cooldownhost,cooldownsaran:cooldownsaran,cooldownlapor:cooldownlapor,cooldownt:cooldownt}
+}
