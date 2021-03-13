@@ -2,6 +2,7 @@ const fs = require('fs');
 let color = "#RANDOM"
 let nhandler = require("./nhandler.js")
 let config = require("../config.json")
+let cd = require("./cooldown")
 let prefix = config.prefix
 
 exports.execute = function (msg, command, args, client, D) {
@@ -14,7 +15,7 @@ exports.execute = function (msg, command, args, client, D) {
         let premission = perm.premission(msg, D)
 
         if (fs.existsSync(`./command/${command}` + ".js") == true) {
-            require(`../command/${command}`).execute(msg, command, args, client, D, premission, color)
+            require(`../command/${command}`).execute(msg, command, args, client, D, premission, color,cd)
         }
     }
     // console.log(args)
