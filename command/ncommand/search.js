@@ -159,7 +159,7 @@ async function getEmoji(id, m, msg) {
     });
 
     download.on("collect", async d => {
-      let embed = await download(res, "zip");
+      let embed = download(res, "zip");
       msg.channel.send(embed);
     });
 
