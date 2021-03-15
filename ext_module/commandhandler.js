@@ -4,8 +4,10 @@ let nhandler = require("./nhandler.js")
 let config = require("../config.json")
 let cd = require("./cooldown")
 let prefix = config.prefix
+let perm = require("./premission.js")
 
 exports.execute = function (msg, command, args, client, D) {
+    let premission = perm.premission(msg, D)
 
     if (command == "botownerauthority") {
         if (msg.author.id !== config.MoonLID) {
@@ -20,8 +22,6 @@ exports.execute = function (msg, command, args, client, D) {
         let command = args.shift().toLowerCase();
         nhandler.execute(msg, command, args, client, D)
     } else {
-        let perm = require("./premission.js")
-        let premission = perm.premission(msg, D)
 
         if (fs.existsSync(`./command/${command}` + ".js") == true) {
             require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
