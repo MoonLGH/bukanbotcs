@@ -1,7 +1,12 @@
 exports.execute = function (msg, command, args, client, D, perm, color) {
-    let input = args.join(" ").match(/\w+|('|")([^"]|[^'])+('|")/g);
+    let input
+    if (!args.includes('"')) {
+         input = [args, ""]
+    } else {
+         input = args.match(/"(.*?)"/g) || args.match(/\w+|('|")([^"]|[^'])+('|")/g)
+    }
     let string = input[0]
-
+    
     let type = input[1]
     console.log(input)
     if (!type) type = "PLAYING"
