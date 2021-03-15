@@ -8,14 +8,66 @@ const { MessageEmbed } = require("discord.js");
 function getRandInt(int) {
   return Math.floor(Math.random() * int);
 }
+function getById(id) {
+  return api.g(id.toString()).then(res => res);
+}
+async function download(res, type) {
+  let nhentURL = `https://mangadl.herokuapp.com/download/nhentai/${res.id}/${
+    type == "cbz" ? "cbz" : "zip"
+  }`;
+  const embed = new MessageEmbed()
+    .setTitle(res.title.pretty)
+    .setURL(encodeURI(nhentURL.trim()))
+    .setThumbnail(getInfo(res).cover)
+    .setColor(NanaUtils.COLOR)
+    .setTimestamp()
+    .setDescription(
+      `To start download, click the doujin title above.\n\nFeel free to join [my server](https://discord.gg/X3yeKgN)`
+    );
+  return embed;
+}
+function getInfo(res) {
+  let json = {};
+
+  json.title = res.title.pretty;
+  json.link = `https://nhentai.net/g/${res.id}`;
+  json.id = res.id;
+  json.tag = res.tags
+    .filter(x => x.type == "tag")
+    .map(x => NanaUtils.toPlural(x.name));
+  json.category = res.tags
+    .filter(x => x.type == "category")
+    .map(x => NanaUtils.toPlural(x.name));
+  json.artist = res.tags
+    .filter(x => x.type == "artist")
+    .map(x => NanaUtils.toPlural(x.name));
+  json.parody = res.tags
+    .filter(x => x.type == "parody")
+    .map(x => NanaUtils.toPlural(x.name));
+  json.character = res.tags
+    .filter(x => x.type == "character")
+    .map(x => NanaUtils.toPlural(x.name));
+  json.cover = `https://i.nhentai.net/galleries/${res.media_id}/1.${
+    TYPE[res.images.cover.t]
+  }`;
+
+  let lang = res.tags.filter(x => x.type == "language").map(x => x.name);
+  if (lang[0] == "translated") {
+    json.lang = NanaUtils.toPlural(lang[1]);
+  } else {
+    json.lang = NanaUtils.toPlural(lang[0]);
+  }
+
+  return json;
+}
 async function getInfoEmbed(id, msg) {
   const embed = new MessageEmbed();
-  let res = await this.getById(id);
-  let info = this.getInfo(res);
+  let res = await getById(id);
+  let info = getInfo(res);
 
   // console.log(info);
-  embed.setAuthor("nHentai random generator", this.client.nHlogo);
-  embed.setColor(this.client.config.COLOR);
+  embed.setAuthor("nHentai random generator", "https://cdn.discordapp.com/attachments/466964106692395008/580378765419347968/icon_nhentai.png");
+  embed.setColor(nhconfig.COLOR);
   // embed.setThumbnail(thumb);
   embed.setTitle(`${res.title.pretty}`);
   embed.setDescription(
@@ -42,9 +94,139 @@ async function getInfoEmbed(id, msg) {
   if (info.tag[0])
     embed.addField("Tags", info.tag[0] ? info.tag.join(", ") : info.tag);
   let m = await msg.channel.send(embed);
-  this.getEmoji(id, m, msg);
+  getEmoji(id, m, msg);
 }
 
+async function getEmoji(id, m, msg) {
+    let res = await getById(id);
+    let info = getInfo(res);
+    let pagination = 1;
+    let doujin = [];
+    let nick =
+      msg.member.nickname !== null
+        ? `${msg.member.nickname}`
+        : msg.author.username;
+
+    res.images.pages.forEach((page, i) => {
+      doujin.push(
+        `https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.${
+          TYPE[page.t]
+        }`
+      );
+    });
+
+    await m.react("📖");
+    await m.react("💾");
+    await m.react("♻");
+
+    const deleteFilter = (reaction, user) =>
+      reaction.emoji.name === `♻` && user.id === msg.author.id;
+    const forwardsFilter = (reaction, user) =>
+      reaction.emoji.name === `📖` && user.id === msg.author.id;
+    const downloadFilter = (reaction, user) =>
+      reaction.emoji.name === `💾` && user.id !== user.id;
+
+    const deletes = m.createReactionCollector(deleteFilter);
+    const forwards = m.createReactionCollector(forwardsFilter);
+    const download = m.createReactionCollector(downloadFilter);
+
+    forwards.on("collect", async f => {
+      m.delete();
+
+      // read embed
+      const read = new MessageEmbed();
+      read.setAuthor("nHentai read", "https://cdn.discordapp.com/attachments/466964106692395008/580378765419347968/icon_nhentai.png");
+      read.setColor(nhconfig.COLOR);
+      read.setTitle(`${res.title.pretty}`);
+      read.setDescription(
+        `Made by: **${info.artist[0] ? info.artist.join(", ") : info.artist}**`
+      );
+      read.setURL(`https://nhentai.net/g/${res.id}`);
+      read.setImage(doujin[pagination - 1]);
+      read.setFooter(`Page ${pagination} of ${doujin.length} / ${res.id}`);
+      let r = await msg.channel.send(read);
+      return getRead(res, read, r, msg, pagination);
+    });
+
+    deletes.on("collect", d => {
+      return m.delete();
+    });
+
+    download.on("collect", async d => {
+      let embed = await download(res, "zip");
+      msg.channel.send(embed);
+    });
+
+
+  }
+  async function getRead(res, read, r, msg, pagination) {
+    let images = [];
+    res.images.pages.forEach((page, i) => {
+      images.push(
+        `https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.${
+          TYPE[page.t]
+        }`
+      );
+    });
+
+    await r.react("⏪");
+    await r.react("⬅");
+    await r.react("➡");
+    await r.react("⏩");
+    await r.react("♻");
+
+    const backwardsTenFilter = (reaction, user) =>
+      reaction.emoji.name === `⏪` && user.id === msg.author.id;
+    const backwardsFilter = (reaction, user) =>
+      reaction.emoji.name === `⬅` && user.id === msg.author.id;
+    const deleteFilter = (reaction, user) =>
+      reaction.emoji.name === `♻` && user.id === msg.author.id;
+    const forwardsFilter = (reaction, user) =>
+      reaction.emoji.name === `➡` && user.id === msg.author.id;
+    const forwardsTenFilter = (reaction, user) =>
+      reaction.emoji.name === `⏩` && user.id === msg.author.id;
+    const backwardsTen = r.createReactionCollector(backwardsTenFilter);
+    const backwards = r.createReactionCollector(backwardsFilter);
+    const deletes = r.createReactionCollector(deleteFilter);
+    const forwards = r.createReactionCollector(forwardsFilter);
+    const forwardsTen = r.createReactionCollector(forwardsTenFilter);
+
+    backwardsTen.on("collect", bt => {
+      if (pagination <= 5) return;
+      pagination -= 5;
+      read.setImage(images[pagination - 1]);
+      read.setFooter(`Page ${pagination} of ${images.length} / ${res.id}`);
+      r.edit(read);
+    });
+
+    backwards.on("collect", b => {
+      if (pagination == 1) return;
+      pagination--;
+      read.setImage(images[pagination - 1]);
+      read.setFooter(`Page ${pagination} of ${images.length} / ${res.id}`);
+      r.edit(read);
+    });
+
+    forwards.on("collect", f => {
+      if (pagination == images.length) return;
+      pagination++;
+      read.setImage(images[pagination - 1]);
+      read.setFooter(`Page ${pagination} of ${images.length} / ${res.id}`);
+      r.edit(read);
+    });
+
+    forwardsTen.on("collect", ft => {
+      if (pagination + 5 >= images.length) return;
+      pagination += 5;
+      read.setImage(images[pagination - 1]);
+      read.setFooter(`Page ${pagination} of ${images.length} / ${res.id}`);
+      r.edit(read);
+    });
+
+    deletes.on("collect", d => {
+      r.delete();
+    });
+  }
 exports.execute = async (msg, command, args, client, D, perm, color) => {
   if (!msg.channel.nsfw)
     return msg.channel
@@ -99,7 +281,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         .then(msg => msg.delete({ timeout: 6000 }));
     
     let rand = getRandInt(query.length);
-    await client.embeds.getInfoEmbed(query[rand].id, msg);
+    await getInfoEmbed(query[rand].id, msg);
     return;
   }
   try {
@@ -114,7 +296,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         .then(msg => msg.delete({ timeout: 6000 }));
     
     let query = id.results.find(x => x.language == lang.toLowerCase()).id;
-    await client.embeds.getInfoEmbed(query, msg);
+    await getInfoEmbed(query, msg);
   } catch (err) {
     console.log(err.message);
   }
