@@ -1,9 +1,9 @@
 exports.execute = function (msg, command, args, client, D, perm, color) {
     let input
     if (!args.includes('"')) {
-         input = [args, ""]
+         input = [args.join(" "), ""]
     } else {
-         input = args.match(/"(.*?)"/g) || args.match(/\w+|('|")([^"]|[^'])+('|")/g)
+         input = args.join(" ").match(/"(.*?)"/g) || args.join(" ").match(/\w+|('|")([^"]|[^'])+('|")/g)
     }
     let string = input[0]
     
