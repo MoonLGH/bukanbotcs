@@ -72,4 +72,4 @@ exports.toPlural = function(str) {
   arr[0] = arr[0].toUpperCase();
   return arr.join("");
 }
-module.exports = Util;
+// module.exports = Util;
