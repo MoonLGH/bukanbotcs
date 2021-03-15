@@ -1,5 +1,5 @@
 exports.execute = function (msg, command, args, client, D, perm, color) {
-    let input = args.match(/"(.*?)"/g)
+    let input = args.join(" ").match(/\w+|('|")([^"]|[^'])+('|")/g);
     let string = input[0]
 
     let type = input[1]
