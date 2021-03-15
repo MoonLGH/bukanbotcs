@@ -2,7 +2,8 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
     let input = args.join(" ").match(/\w+|('|")([^"]|[^'])+('|")/g);
     let string = input[0].replace(/["']/g, "")
 
-    let type = input[1].toUpperCase()
+    let type = input[1]
+    console.log(input)
     if (!type) type = "PLAYING"
     if (type == "PLAYING") {
         type = "PLAYING"
