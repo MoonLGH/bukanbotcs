@@ -264,7 +264,7 @@ client.on("message", async (msg) => {
             }))
         } else {
             msg.channel.send(saranm)
-            const adminsaran = config.saranchanneladmin
+            const adminsaran = client.channels.cache.get(config.saranchanneladmin)
             adminsaran.send(saran)
             cooldownsaran.add(msg.author.id)
             setTimeout(() => {
