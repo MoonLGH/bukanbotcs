@@ -157,7 +157,7 @@ async function getEmoji(client,id, m, msg) {
     });
 
     download.on("collect", async d => {
-      download(res, "zip");
+      download(res, "zip",msg);
     });
 
 
