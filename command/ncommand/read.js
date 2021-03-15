@@ -64,7 +64,7 @@ function getInfo(res) {
 
   return json;
 }
-async function getInfoEmbed(id, msg) {
+async function getInfoEmbed(client,id, msg) {
   const embed = new MessageEmbed();
   let res = await getById(id);
   let info = getInfo(res);
@@ -98,10 +98,10 @@ async function getInfoEmbed(id, msg) {
   if (info.tag[0])
     embed.addField("Tags", info.tag[0] ? info.tag.join(", ") : info.tag);
   let m = await msg.channel.send(embed);
-  getEmoji(id, m, msg);
+  getEmoji(client,id, m, msg);
 }
 
-async function getEmoji(id, m, msg) {
+async function getEmoji(client,id, m, msg) {
     let res = await getById(id);
     let info = getInfo(res);
     let pagination = 1;
@@ -128,7 +128,7 @@ async function getEmoji(id, m, msg) {
     const forwardsFilter = (reaction, user) =>
       reaction.emoji.name === `📖` && user.id === msg.author.id;
     const downloadFilter = (reaction, user) =>
-      reaction.emoji.name === `💾` && user.id !== user.id;
+      reaction.emoji.name === `💾` && user.id !== client.user.id;
 
     const deletes = m.createReactionCollector(deleteFilter);
     const forwards = m.createReactionCollector(forwardsFilter);
@@ -157,7 +157,7 @@ async function getEmoji(id, m, msg) {
     });
 
     download.on("collect", async d => {
-      download(res, "zip",msg);
+      download(res, "zip");
     });
 
 
@@ -246,7 +246,7 @@ async function getEmoji(id, m, msg) {
         .then(msg => msg.delete({ timeout: 5000 }));
   
     try {
-      let m = await getInfoEmbed(id, msg);
+      let m = await getInfoEmbed(client,id, msg);
     } catch (e) {
       if (e.message == "Doujin Not Found") {
         return msg.channel
