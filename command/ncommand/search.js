@@ -19,7 +19,7 @@ async function download(res, type) {
     .setTitle(res.title.pretty)
     .setURL(encodeURI(nhentURL.trim()))
     .setThumbnail(getInfo(res).cover)
-    .setColor(NanaUtils.COLOR)
+    .setColor(nhconfig.COLOR)
     .setTimestamp()
     .setDescription(
       `To start download, click the doujin title above.\n\nFeel free to join [my server](https://discord.gg/X3yeKgN)`
