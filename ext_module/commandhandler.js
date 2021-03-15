@@ -2,7 +2,7 @@ const fs = require('fs');
 let color = "#RANDOM"
 let nhandler = require("./nhandler.js")
 let config = require("../config.json")
-let cd = require("./cooldown")()
+let cd = require("./cooldown")
 let prefix = config.prefix
 
 exports.execute = function (msg, command, args, client, D) {
