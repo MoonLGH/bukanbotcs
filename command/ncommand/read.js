@@ -17,10 +17,8 @@ function getRandInt(int) {
 function getById(id) {
   return api.g(id.toString()).then(res => res);
 }
-async function download(res, type) {
-  let nhentURL = `https://mangadl.herokuapp.com/download/nhentai/${res.id}/${
-    type == "cbz" ? "cbz" : "zip"
-  }`;
+async function download(res, type,msg) {
+  let nhentURL = `https://mangadl.herokuapp.com/download/nhentai/${res.id}/${type}`;
   const embed = new MessageEmbed()
     .setTitle(res.title.pretty)
     .setURL(encodeURI(nhentURL.trim()))
@@ -30,7 +28,7 @@ async function download(res, type) {
     .setDescription(
       `To start download, click the doujin title above.\n\nFeel free to join [my server](https://discord.gg/X3yeKgN)`
     );
-  return embed;
+  return msg.channel.send(embed);
 }
 function getInfo(res) {
   let json = {};
@@ -159,8 +157,7 @@ async function getEmoji(id, m, msg) {
     });
 
     download.on("collect", async d => {
-      let embed = download(res, "zip");
-      msg.channel.send(embed);
+      download(res, "zip",msg);
     });
 
 
