@@ -12,7 +12,9 @@ exports.execute = function (msg, command, args, client, D) {
             msg.channel.send("Kamu Bukan <@" + config.MoonLID + ">")
         } else {
             let command = args.shift().toLowerCase();
-            require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
+            if (fs.existsSync(`./command/${command}` + ".js") == true) {
+                require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
+            }
         }
     } else if (command == "nh") {
         let command = args.shift().toLowerCase();

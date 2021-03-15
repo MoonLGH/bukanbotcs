@@ -23,4 +23,6 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
             type: type
         }
     )
+
+    msg.channel.send(`New Activity Setted!. \n${string} With ${type} Type of Activity`)
 }
