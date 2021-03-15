@@ -6,9 +6,7 @@ exports.ready = async function (client, d) {
 
     console.log('()=-()-=-=()=--=()=--=()=--=()=--=()=-()-=-=()=--=()=--=()=--=()=--=()')
     console.log(`Discord Bot on. Loggined as ${client.user.tag}`)
-    setInterval(() => {
-        activity.activity(client)
-    }, 2000);
+    activity.activity(client)
     console.log(`Bot Activity Has Been Setted`)
     slash.slash(client, d)
     // welcome.welcome(client)

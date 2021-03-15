@@ -7,7 +7,14 @@ let prefix = config.prefix
 
 exports.execute = function (msg, command, args, client, D) {
 
-    if (command == "nh") {
+    if (command == "botownerauthority") {
+        if (msg.author.id !== config.MoonLID) {
+            msg.channel.send("Kamu Bukan <@" + config.MoonLID + ">")
+        } else {
+            let command = args.shift().toLowerCase();
+            require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
+        }
+    } else if (command == "nh") {
         let command = args.shift().toLowerCase();
         nhandler.execute(msg, command, args, client, D)
     } else {
@@ -15,7 +22,7 @@ exports.execute = function (msg, command, args, client, D) {
         let premission = perm.premission(msg, D)
 
         if (fs.existsSync(`./command/${command}` + ".js") == true) {
-            require(`../command/${command}`).execute(msg, command, args, client, D, premission, color,cd)
+            require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
         }
     }
     // console.log(args)
