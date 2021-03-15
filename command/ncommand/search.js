@@ -5,6 +5,12 @@ const NanaEmbeds = require("./lib/NanaEmbeds");
 const NanaUtils = require("./lib/NanaUtils");
 const { MessageEmbed } = require("discord.js");
 
+const TYPE = {
+  j: "jpg",
+  p: "png",
+  g: "gif"
+};
+
 function getRandInt(int) {
   return Math.floor(Math.random() * int);
 }
