@@ -17,8 +17,10 @@ function getRandInt(int) {
 function getById(id) {
   return api.g(id.toString()).then(res => res);
 }
-async function download(res, type,msg) {
-  let nhentURL = `https://mangadl.herokuapp.com/download/nhentai/${res.id}/${type}`;
+async function download(res, type) {
+  let nhentURL = `https://mangadl.herokuapp.com/download/nhentai/${res.id}/${
+    type == "cbz" ? "cbz" : "zip"
+  }`;
   const embed = new MessageEmbed()
     .setTitle(res.title.pretty)
     .setURL(encodeURI(nhentURL.trim()))
@@ -28,7 +30,7 @@ async function download(res, type,msg) {
     .setDescription(
       `To start download, click the doujin title above.\n\nFeel free to join [my server](https://discord.gg/X3yeKgN)`
     );
-  return msg.channel.send(embed);
+  return embed;
 }
 function getInfo(res) {
   let json = {};
@@ -64,7 +66,7 @@ function getInfo(res) {
 
   return json;
 }
-async function getInfoEmbed(client,id, msg) {
+async function getInfoEmbed(id, msg) {
   const embed = new MessageEmbed();
   let res = await getById(id);
   let info = getInfo(res);
@@ -98,10 +100,10 @@ async function getInfoEmbed(client,id, msg) {
   if (info.tag[0])
     embed.addField("Tags", info.tag[0] ? info.tag.join(", ") : info.tag);
   let m = await msg.channel.send(embed);
-  getEmoji(client,id, m, msg);
+  getEmoji(id, m, msg);
 }
 
-async function getEmoji(client,id, m, msg) {
+async function getEmoji(id, m, msg) {
     let res = await getById(id);
     let info = getInfo(res);
     let pagination = 1;
@@ -128,7 +130,7 @@ async function getEmoji(client,id, m, msg) {
     const forwardsFilter = (reaction, user) =>
       reaction.emoji.name === `📖` && user.id === msg.author.id;
     const downloadFilter = (reaction, user) =>
-      reaction.emoji.name === `💾` && user.id !== client.user.id;
+      reaction.emoji.name === `💾` && user.id === msg.author.id;
 
     const deletes = m.createReactionCollector(deleteFilter);
     const forwards = m.createReactionCollector(forwardsFilter);
@@ -157,7 +159,8 @@ async function getEmoji(client,id, m, msg) {
     });
 
     download.on("collect", async d => {
-      download(res, "zip",msg);
+      let embed = await download(res, "zip");
+      msg.channel.send(embed);
     });
 
 
@@ -284,7 +287,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         .then(msg => msg.delete({ timeout: 6000 }));
     
     let rand = getRandInt(query.length);
-    await getInfoEmbed(client,query[rand].id, msg);
+    await getInfoEmbed(query[rand].id, msg);
     return;
   }
   try {
@@ -299,7 +302,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         .then(msg => msg.delete({ timeout: 6000 }));
     
     let query = id.results.find(x => x.language == lang.toLowerCase()).id;
-    await getInfoEmbed(client,query, msg);
+    await getInfoEmbed(query, msg);
   } catch (err) {
     console.log(err.message);
   }
