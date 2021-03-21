@@ -29,8 +29,6 @@ async function getinfo(msg, D, color, command, ID) {
 
     let img = $("#infoarea > div > div.infoanime.widget_senction > div.thumb > img").attr("src")
 
-
-
     let chapterlist = []
     $("#chapter_list > ul > div > div").eq(0).find("li").each(function () {
         chapter = $(this).find("div.epsleft > div.lchx > a").text()
@@ -42,7 +40,6 @@ async function getinfo(msg, D, color, command, ID) {
             date
         })
     })
-
 
     let index = 0
     let embed = new D.MessageEmbed();
