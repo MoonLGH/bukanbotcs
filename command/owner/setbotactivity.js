@@ -1,28 +1,23 @@
-const config = require("../config.json")
+const config = require("../../config.json")
 exports.execute = function (msg, command, args, client, D, perm, color) {
     if (msg.author.id !== config.MoonLID) {
        return msg.channel.send("Kamu Bukan <@" + config.MoonLID + ">")
     }
-    let input
-    if (!args.includes('"')) {
-         input = [args.join(" "), ""]
-    } else {
-         input = args.join(" ").match(/"(.*?)"/g) || args.join(" ").match(/\w+|('|")([^"]|[^'])+('|")/g)
-    }
-    let string = input[0]
-    
-    let type = input[1]
+
+    if(args[9])
+
+    let type = args.shift().toLowerCase();
     console.log(input)
     if (!type) type = "PLAYING"
-    if (type == "PLAYING") {
+    if (type == "playing") {
         type = "PLAYING"
-    } else if (type == "STREAMING") {
+    } else if (type == "streaming") {
         type = "STREAMING"
-    } else if (type == "LISTENING") {
+    } else if (type == "listening") {
         type = "LISTENING"
-    } else if (type == "WATCHING") {
+    } else if (type == "watching") {
         type = "WATCHING"
-    } else if (type == "COMPETING") {
+    } else if (type == "competing") {
         type = "COMPETING"
     } else {
         return msg.channel.send("Tipe yang kamu masukan tidak valid!. \n Tipe yang valid adalah: \n-PLAYING \n-STREAMING\n-LISTENING\n-COMPETING")

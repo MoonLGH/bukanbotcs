@@ -15,8 +15,8 @@ exports.execute = function (msg, command, args, client, D) {
             msg.channel.send("Kamu Bukan <@" + config.MoonLID + ">")
         } else {
             let command = args.shift().toLowerCase();
-            if (fs.existsSync(`./command/${command}` + ".js") == true) {
-                require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
+            if (fs.existsSync(`./command/owner/${command}` + ".js") == true) {
+                require(`../command/owner/${command}`).execute(msg, command, args, client, D, premission, color, cd)
             }
         }
     } else if (command == "nh") {
@@ -27,10 +27,8 @@ exports.execute = function (msg, command, args, client, D) {
         let command = args.shift().toLowerCase();
         hhandler.Doudesu(msg, command, args, client, D)
     } else {
-        if (alias(command) !== null) {
-            if (fs.existsSync(`./command/${alias(command)}` + ".js") == true) {
-                require(`../command/${alias(command)}`).execute(msg, command, args, client, D, premission, color, cd)
-            }
+        if ((alias(command) !== null && fs.existsSync(`./command/general/${alias(command)}` + ".js" == true)) || fs.existsSync(`./command/general/${command}` + ".js") == true) {
+            require(`../command/general/${alias(command) || command}`).execute(msg, command, args, client, D, premission, color, cd)
         }
     }
 

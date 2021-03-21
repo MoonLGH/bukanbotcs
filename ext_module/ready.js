@@ -1,6 +1,6 @@
 const activity = require("./act.js")
 const slash = require("./slash.js")
-const welcome = require("../command/welcomer.js")
+const welcome = require("../command/general/welcomer.js")
 exports.ready = async function (client, d) {
     const guildname = await client.guilds.fetch('801839309073678346')
 
