@@ -31,9 +31,9 @@ async function getinfo(msg, D, color, command, ID) {
 
     let chapterlist = []
     $("#mCSB_1_container > li").each(function () {
-        chapter = $(this).find("div.epsleft > div.lchx > a").text()
-        chapterID = $(this).find("div.epsleft > div.lchx > a").attr("href")
-        date = $(this).find("div.epsleft > div.date").text()
+        chapter = $(this).find("div.epsleft > span.lchx > a").text()
+        chapterID = $(this).find("div.epsleft > span.lchx > a").attr("href")
+        date = $(this).find("div.epsleft > span.date").text()
         chapterlist.push({
             chapter,
             chapterID,
