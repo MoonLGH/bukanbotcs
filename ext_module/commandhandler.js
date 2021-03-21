@@ -28,12 +28,13 @@ exports.execute = function (msg, command, args, client, D) {
         hhandler.Doudesu(msg, command, args, client, D)
     } else {
         let cmd
-        if(alias(command) !== null && fs.existsSync(`./command/general/${alias(command)}` + ".js")){
+        if(alias(command) !== null){
             cmd = alias(command)
+            require(`../command/general/${cmd}`).execute(msg, command, args, client, D, premission, color, cd)
         }else if(fs.existsSync(`./command/general/${command}` + ".js") == true){
             cmd = command
-        }
             require(`../command/general/${cmd}`).execute(msg, command, args, client, D, premission, color, cd)
+        }
     }
 
 }
