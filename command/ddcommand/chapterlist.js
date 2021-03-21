@@ -16,6 +16,7 @@ async function getinfo(msg, D, color, command, ID) {
     const data = await axios.get(config.url + ID)
     const $ = cheerio.load(data.data)
 
+    
     let info = []
     let name = $("#infoarea > div > div.infoanime.widget_senction > div.infox > h1").text()
     $("#infoarea > div > div.infoanime.widget_senction > div.infox > div.spe").each(function () {
