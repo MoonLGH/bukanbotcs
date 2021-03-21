@@ -1,6 +1,6 @@
 const fs = require('fs');
 let color = "#RANDOM"
-let nhandler = require("./nhandler.js")
+let hhandler = require("./Hhandler.js")
 let config = require("../config.json")
 let cd = require("./cooldown")
 let prefix = config.prefix
@@ -20,9 +20,12 @@ exports.execute = function (msg, command, args, client, D) {
         }
     } else if (command == "nh") {
         let command = args.shift().toLowerCase();
-        nhandler.execute(msg, command, args, client, D)
+        hhandler.nh(msg, command, args, client, D)
+    }
+    if (command == "dd" || command == "doudesu" || command == "doujindesu") {
+        let command = args.shift().toLowerCase();
+        hhandler.Doudesu(msg, command, args, client, D)
     } else {
-
         if (fs.existsSync(`./command/${command}` + ".js") == true) {
             require(`../command/${command}`).execute(msg, command, args, client, D, premission, color, cd)
         }
