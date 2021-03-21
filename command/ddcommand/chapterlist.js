@@ -57,8 +57,9 @@ async function getinfo(msg, D, color, command, ID) {
         embed.addField(info[2].key, info[2].value)
     }
     // embed.addField("Chapter", chapterlist[index].chapter)
-    embed.addField("ChapterID", chapterlist[index].chapterID)
-    embed.addField("Date", chapterlist[index].date)
+    // embed.addField("ChapterID", chapterlist[index].chapterID)
+    // embed.addField("Date", chapterlist[index].date)
+    console.log(chapterlist)
     embed.addField("\u200b", "\u200b")
     embed.addField("Command", `:book: : Read at the this Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
     embed.setImage(img)
