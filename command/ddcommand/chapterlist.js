@@ -16,7 +16,7 @@ async function getinfo(msg, D, color, command, ID) {
     const data = await axios.get(config.url + ID)
     const $ = cheerio.load(data.data)
 
-    
+
     let info = []
     let name = $("#infoarea > div > div.infoanime.widget_senction > div.infox > h1").text()
     $("#infoarea > div > div.infoanime.widget_senction > div.infox > div.spe").each(function () {
@@ -31,6 +31,8 @@ async function getinfo(msg, D, color, command, ID) {
     let img = $("#infoarea > div > div.infoanime.widget_senction > div.thumb > img").attr("src")
 
     let chapterlist = []
+    // #mCSB_1_container > li:nth-child(1) > div.epsleft > span.date
+    // #mCSB_1_container > li:nth-child(1) > div.epsleft > span.lchx > a
     $("#mCSB_1_container > li").each(function () {
         chapter = $(this).find("div.epsleft > span.lchx > a").text()
         chapterID = $(this).find("div.epsleft > span.lchx > a").attr("href")
@@ -41,6 +43,7 @@ async function getinfo(msg, D, color, command, ID) {
             date
         })
     })
+    console.log(chapterlist)
 
     let index = 0
     let embed = new D.MessageEmbed();
@@ -60,7 +63,6 @@ async function getinfo(msg, D, color, command, ID) {
     embed.addField("Chapter", chapterlist[index].chapter)
     embed.addField("ChapterID", chapterlist[index].chapterID)
     embed.addField("Date", chapterlist[index].date)
-    console.log(chapterlist)
     embed.addField("\u200b", "\u200b")
     embed.addField("Command", `:book: : Read at the this Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
     embed.setImage(img)
