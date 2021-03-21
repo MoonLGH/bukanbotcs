@@ -4,6 +4,7 @@ let hhandler = require("./Hhandler.js")
 let config = require("../config.json")
 let cd = require("./cooldown")
 let prefix = config.prefix
+let aliases = require("./aliaslist.json")
 let perm = require("./premission.js")
 
 exports.execute = function (msg, command, args, client, D) {
