@@ -41,8 +41,8 @@ let list = []
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
-    await embedsend.react(":books:")
-    await embedsend.react(":book:");
+    await embedsend.react("📚")
+    await embedsend.react("📖");
 
     const deleteFilter = (reaction, user) =>
         reaction.emoji.name === `🗑️` && user.id === msg.author.id;
