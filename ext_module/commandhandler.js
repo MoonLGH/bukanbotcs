@@ -29,7 +29,7 @@ exports.execute = function (msg, command, args, client, D) {
     } else {
         if ((alias(command) !== null && fs.existsSync(`./command/general/${alias(command)}` + ".js" == true)) || fs.existsSync(`./command/general/${command}` + ".js") == true) {
             let cmd
-            if(alias(command) == null && fs.existsSync(`./command/general/${command}` + ".js") == true){
+            if(fs.existsSync(`./command/general/${command}` + ".js") == true){
                 cmd = command
             }else{
                 cmd = alias(command)
