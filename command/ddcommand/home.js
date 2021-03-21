@@ -31,6 +31,8 @@ let list = []
         .addField(`Tipe`, list[index].type)
         .addField(`Highlited Chapter`, list[index].chapter)
         .addField(`Highlited Chapter ID`, list[index].chapterid)
+        .addField("\u200b","\u200b")
+        .addField("Command",`:books: : Look at the chapter list for ${list[index].name} \n :book: : Read at the Highlited Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
         .setImage(list[index].imageurl)
         .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
@@ -39,6 +41,8 @@ let list = []
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
+    await embedsend.react(":books:")
+    await embedsend.react(":book:");
 
     const deleteFilter = (reaction, user) =>
         reaction.emoji.name === `🗑️` && user.id === msg.author.id;
@@ -70,6 +74,8 @@ let list = []
         .addField(`Tipe`, list[index].type)
         .addField(`Highlited Chapter`, list[index].chapter)
         .addField(`Highlited Chapter ID`, list[index].chapterid)
+        .addField("\u200b","\u200b")
+        .addField("Command",`:books: : Look at the chapter list for ${list[index].name} \n :book: : Read at the Highlited Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
         .setImage(list[index].imageurl)
         .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
@@ -89,6 +95,8 @@ let list = []
         .addField(`Tipe`, list[index].type)
         .addField(`Highlited Chapter`, list[index].chapter)
         .addField(`Highlited Chapter ID`, list[index].chapterid)
+        .addField("\u200b","\u200b")
+        .addField("Command",`:books: : Look at the chapter list for ${list[index].name} \n :book: : Read at the Highlited Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
         .setImage(list[index].imageurl)
         .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
