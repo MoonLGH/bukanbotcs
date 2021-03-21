@@ -27,15 +27,13 @@ exports.execute = function (msg, command, args, client, D) {
         let command = args.shift().toLowerCase();
         hhandler.Doudesu(msg, command, args, client, D)
     } else {
-        if ((alias(command) !== null && fs.existsSync(`./command/general/${alias(command)}` + ".js" == true)) || fs.existsSync(`./command/general/${command}` + ".js") == true) {
-            let cmd
-            if(fs.existsSync(`./command/general/${command}` + ".js") == true){
-                cmd = command
-            }else{
-                cmd = alias(command)
-            }
-            require(`../command/general/${cmd}`).execute(msg, command, args, client, D, premission, color, cd)
+        let cmd
+        if(alias(command) !== null && fs.existsSync(`./command/general/${alias(command)}` + ".js")){
+            cmd = alias(command)
+        }else if(fs.existsSync(`./command/general/${command}` + ".js") == true){
+            cmd = command
         }
+            require(`../command/general/${cmd}`).execute(msg, command, args, client, D, premission, color, cd)
     }
 
 }
