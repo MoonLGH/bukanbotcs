@@ -1,9 +1,9 @@
 {
-    "_comment0": "Normal Authority", 
+    "_comment0": ["general Authority"], 
     "image":["img","gambar"],
     
-    "_comment1": "Owner Authority", 
+    "_comment1": ["Owner Authority"], 
     "setbotactivity" : ["sba","botactivity","setbotact","botact"],
 
-    "_comment2": "NSFW" 
+    "_comment2": ["NSFW"]
 }
