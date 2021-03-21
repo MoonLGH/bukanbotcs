@@ -28,7 +28,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         let id = $(this).find("div > div > a").attr("href").replace(config.url, "")
         let score = $(this).find("div > div > a > div.data > div.score").text()
         let status = $(this).find("div > div > a > div.data > div.type").text()
-        let imageurl = $(this).find("div > div > a > div.content-thumb > img").attr("src").replace("//","https://")
+        let imageurl = $(this).find("div > div > a > div.content-thumb > img").attr("src").replace("//", "https://")
         list.push({
             name,
             type,
@@ -73,12 +73,20 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
     const deletes = embedsend.createReactionCollector(deleteFilter);
     const forwards = embedsend.createReactionCollector(forwardsFilter);
 
+    const chapterlist = (reaction, user) =>
+        reaction.emoji.name === `📚` && user.id === msg.author.id;
+    const clist = embedsend.createReactionCollector(chapterlist);
+    clist.on("collect", async f => {
+        embedsend.delete();
+        require("./chapterlist.js").info(msg, command, args, client, D, perm, color, list[index].id)
+    })
+
     deletes.on("collect", async f => {
         embedsend.delete();
     })
 
     forwards.on("collect", async f => {
-        if (index <= list.length) {
+        if (index + 1 <= list.length) {
             index += 1
         }
         console.log(index)
