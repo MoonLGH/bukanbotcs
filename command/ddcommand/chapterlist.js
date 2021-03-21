@@ -20,7 +20,7 @@ async function getinfo(msg, D, color, command, ID) {
     let name = $("#infoarea > div > div.infoanime.widget_senction > div.infox > h1").text()
     $("#infoarea > div > div.infoanime.widget_senction > div.infox > div.spe").each(function(){
         key = $(this).find("span > b").text()
-        value = $(this),find("span").text().replace(key,"")
+        value = $(this).find("span").text().replace(key,"")
         info.push({key,value})
     })
 
