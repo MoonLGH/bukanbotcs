@@ -24,17 +24,17 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
     let list = []
     $("#main > article").each(function () {
         let name = $(this).find("div > div > a").attr("alt")
-        let type = $(this).find("div > div > a > div > div.type").text()
-        let chapter = $(this).find("div > div > div > div > div.plyepisode > a").text()
+        let type = $(this).find("div > div > a > div.content-thumb > div.type").text()
         let id = $(this).find("div > div > a").attr("href").replace(config.url, "")
-        let chapterid = $(this).find("div > div > div > div > div.plyepisode > a").attr("href").replace(config.url, "")
-        let imageurl = $(this).find("div > div > a > div > img").attr("src")
+        let score = $(this).find("div > div > a > div.data > div.score").text()
+        let status = $(this).find("div > div > a > div.data > div.type").text()
+        let imageurl = $(this).find("div > div > a > div.content-thumb > img").attr("src")
         list.push({
             name,
             type,
-            chapter,
             id,
-            chapterid,
+            score,
+            status,
             imageurl
         })
     })
@@ -46,10 +46,10 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         .addField(`Nama`, list[index].name)
         .addField(`ID `, list[index].id)
         .addField(`Tipe`, list[index].type)
-        .addField(`Highlited Chapter`, list[index].chapter)
-        .addField(`Highlited Chapter ID`, list[index].chapterid)
+        .addField(`Score`, list[index].score)
+        .addField(`Status`, list[index].status)
         .addField("\u200b", "\u200b")
-        .addField("Command", `:books: : Look at the chapter list for ${list[index].name} \n :book: : Read at the Highlited Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
+        .addField("Command", `:books: : Look at the chapter list for ${list[index].name} \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
         .setImage(list[index].imageurl)
         .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
@@ -59,7 +59,6 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
     await embedsend.react("⬅");
     await embedsend.react("➡");
     await embedsend.react("📚")
-    await embedsend.react("📖");
 
     const deleteFilter = (reaction, user) =>
         reaction.emoji.name === `🗑️` && user.id === msg.author.id;
@@ -89,10 +88,10 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
             .addField(`Nama`, list[index].name)
             .addField(`ID `, list[index].id)
             .addField(`Tipe`, list[index].type)
-            .addField(`Highlited Chapter`, list[index].chapter)
-            .addField(`Highlited Chapter ID`, list[index].chapterid)
+            .addField(`Score`, list[index].score)
+            .addField(`Status`, list[index].status)
             .addField("\u200b", "\u200b")
-            .addField("Command", `:books: : Look at the chapter list for ${list[index].name} \n :book: : Read at the Highlited Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
+            .addField("Command", `:books: : Look at the chapter list for ${list[index].name} \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
             .setImage(list[index].imageurl)
             .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color);
@@ -110,10 +109,10 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
             .addField(`Nama`, list[index].name)
             .addField(`ID `, list[index].id)
             .addField(`Tipe`, list[index].type)
-            .addField(`Highlited Chapter`, list[index].chapter)
-            .addField(`Highlited Chapter ID`, list[index].chapterid)
+            .addField(`Score`, list[index].score)
+            .addField(`Status`, list[index].status)
             .addField("\u200b", "\u200b")
-            .addField("Command", `:books: : Look at the chapter list for ${list[index].name} \n :book: : Read at the Highlited Chapter \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
+            .addField("Command", `:books: : Look at the chapter list for ${list[index].name} \n :wastebasket: : Remove This Message \n :arrow_left: : Previous on the list \n :arrow_right: : Next on the list`)
             .setImage(list[index].imageurl)
             .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color);
