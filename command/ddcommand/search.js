@@ -28,7 +28,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         let id = $(this).find("div > div > a").attr("href").replace(config.url, "")
         let score = $(this).find("div > div > a > div.data > div.score").text()
         let status = $(this).find("div > div > a > div.data > div.type").text()
-        let imageurl = $(this).find("div > div > a > div.content-thumb > img").attr("src")
+        let imageurl = $(this).find("div > div > a > div.content-thumb > img").attr("src").replace("//","https://")
         list.push({
             name,
             type,
