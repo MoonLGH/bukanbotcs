@@ -12,7 +12,6 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
 
     let type = args.shift().toLowerCase();
     let string = args
-    console.log(input)
     if (!type) type = "PLAYING"
     if (type == "playing") {
         type = "PLAYING"
