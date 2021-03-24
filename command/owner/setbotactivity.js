@@ -24,7 +24,7 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
     } else if (type == "competing") {
         type = "COMPETING"
     } else {
-        return msg.channel.send("Tipe yang kamu masukan tidak valid!. \n Tipe yang valid adalah: \n-PLAYING \n-STREAMING\n-LISTENING\n-COMPETING")
+        return msg.channel.send("Tipe yang kamu masukan tidak valid!. \nTipe yang valid adalah: \n-PLAYING \n-STREAMING\n-LISTENING\n-COMPETING")
     }
 
     client.user.setActivity(

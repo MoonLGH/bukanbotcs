@@ -35,7 +35,7 @@ exports.execute = function (msg, command, args, client, D) {
         let cmd
         if (alias(command) !== null) {
             cmd = alias(command)
-            if (fs.existsSync(`./command/general/${command}` + ".js") == true) {
+            if (fs.existsSync(`./command/general/${cmd}` + ".js") == true) {
                 require(`../command/general/${cmd}`).execute(msg, command, args, client, D, premission, color, cd)
             }
         } else if (fs.existsSync(`./command/general/${command}` + ".js") == true) {
