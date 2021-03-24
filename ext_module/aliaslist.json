@@ -1,6 +1,7 @@
 {
     "_comment0": ["general Authority"], 
     "image":["img","gambar"],
+    "avatar":["pfp"],
     
     "_comment1": ["Owner Authority"], 
     "setbotactivity" : ["sba","botactivity","setbotact","botact"],
