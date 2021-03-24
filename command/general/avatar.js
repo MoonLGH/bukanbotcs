@@ -1,5 +1,10 @@
 exports.execute = async function (msg, command, args, client, D, perm, color) {
-    const user = msg.mentions.users.first() || await msg.guild.members.fetch({ query: args.join(' '), limit: 1 }).then(members => members.first().user).catch(() => null) || msg.author;
+    let user
+    if(!args[0]){
+        user = msg.author;
+    }else{
+     user = msg.mentions.users.first() || await msg.guild.members.fetch({ query: args.join(' '), limit: 1 }).then(members => members.first().user).catch(() => null) 
+    }
     const avatarEmbed = new D.MessageEmbed()
         .setColor(color)
         .setAuthor(user.username)
