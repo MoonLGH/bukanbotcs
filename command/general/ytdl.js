@@ -3,9 +3,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     if (ytdl.validateURL(args[0]) === false) return msg.channel.send("Put An Valid Youtube Link")
     let info = await ytdl.getBasicInfo(args[0])
 
-    let link = await ytdl.getInfo(args[0])
-    let dllink = link.formats
-
     let title = info.videoDetails.title
     let bufs = [];
     let stream = ytdl(args[0], {
@@ -16,7 +13,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     });
     stream.on('end', function () {
         let vid = Buffer.concat(bufs);
-        if(Buffer.byteLength(vid) >= 8388608) return msg.channel.send(`The Video Is Too Big Try Download It Yourself\n${dllink[0].url}`)
+        if(Buffer.byteLength(vid) >= 8388608) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n${args[0].replace("youtube","ssyoutube")}`)
         msg.channel.send("Download Sucsess", {
             files: [{
                 attachment: vid,
