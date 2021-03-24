@@ -4,7 +4,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     let info = await ytdl.getBasicInfo(args[0])
 
     let title = info.videoDetails.title
-    let filename = title.replaceAll("[^a-zA-Z0-9\\.\\-]", "_")
     let bufs = [];
     let stream = ytdl(args[0], {
         filter: format => format.container === 'mp4'
@@ -17,7 +16,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         msg.channel.send("Download Sucsess", {
             files: [{
                 attachment: vid,
-                name: filename
+                name: title
             }]
         })
     })
