@@ -3,7 +3,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     if (ytdl.validateURL(args[0]) === false) return msg.channel.send("Put An Valid Youtube Link")
     let info = await ytdl.getBasicInfo(args[0])
 
-    console.log("ytdl command was executed " + resp)
     let fileOptions = {
         filename: info.videoDetails.title.replaceAll("[^a-zA-Z0-9\\.\\-]", "_"),
     };
