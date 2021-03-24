@@ -11,7 +11,7 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
     }
 
     let type = args.shift().toLowerCase();
-    let string = args
+    let string = args.join(" ")
     if (!type) type = "PLAYING"
     if (type == "playing") {
         type = "PLAYING"
