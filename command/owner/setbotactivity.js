@@ -4,9 +4,14 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
        return msg.channel.send("Kamu Bukan <@" + config.MoonLID + ">")
     }
 
-    if(args[9])
+    if(!args[0]){
+        return msg.reply(`You Must Give A Type\n Do ${config.prefix}owner ${command} types`)
+    }else if(args[0] === "types"){
+        return msg.channel.send("Tipe yang ada adalah: \n-PLAYING \n-STREAMING\n-LISTENING\n-COMPETING")
+    }
 
     let type = args.shift().toLowerCase();
+    let string = args
     console.log(input)
     if (!type) type = "PLAYING"
     if (type == "playing") {

@@ -14,7 +14,7 @@ exports.execute = function (msg, command, args, client, D) {
         if (msg.author.id !== config.MoonLID) {
             msg.channel.send("Kamu Bukan <@" + config.MoonLID + ">")
         } else {
-
+            let command = args.shift().toLowerCase();
             if (alias(command) !== null) {
                 cmd = alias(command)
                 if (fs.existsSync(`./command/owner/${cmd}` + ".js") == true) {
