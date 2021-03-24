@@ -3,7 +3,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     if (ytdl.validateURL(args[0]) === false) return msg.channel.send("Put An Valid Youtube Link")
     let info = await ytdl.getBasicInfo(args[0])
 
-        let filename = info.videoDetails.title.replaceAll("[^a-zA-Z0-9\\.\\-]", "_")
+    let title = info.videoDetails.title
+    let filename = title.replaceAll("[^a-zA-Z0-9\\.\\-]", "_")
     let bufs = [];
     let stream = ytdl(args[0], {
         filter: format => format.container === 'mp4'
