@@ -3,7 +3,11 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
     const avatarEmbed = new D.MessageEmbed()
         .setColor(color)
         .setAuthor(user.username)
-        .setDescription(`${user.username} Avatar Url is \`${user.avatarURL()}\``)
-        .setImage(user.avatarURL()+"?size=512");
+        .setDescription(`${user.username} Avatar Url is \`${user.displayAvatarURL({dynamic: true,size: 2048,format: 'png'})}\``)
+        .setImage(user.displayAvatarURL({
+            dynamic: true,
+            size: 2048,
+            format: 'png'
+        }))
     msg.channel.send(avatarEmbed);
 }
