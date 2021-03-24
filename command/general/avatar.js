@@ -1,5 +1,5 @@
 exports.execute = function (msg, command, args, client, D, perm, color) {
-    const user = msg.mentions.users.first() || (msg.guild.member.cache.find(guild => guild.nickname && guild.nickname.toLowerCase() === args.join(' ').toLowerCase()) || {}).user || msg.author;
+    const user = msg.mentions.users.first() || await msg.guild.members.fetch({ query: args.join(' '), limit: 1 }).then(members => members.first().user).catch(() => null) || msg.author;
     const avatarEmbed = new D.MessageEmbed()
         .setColor(color)
         .setAuthor(user.username)
