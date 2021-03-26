@@ -3,18 +3,20 @@ let cool
 exports.execute = async function (msg, command, args, client, D, perm, color) {
     let image = []
 
-    if (perm.Sadmin || perm.host) {
-        if (args[0] === "cooldown" || args[0] == "cd") {
-            if (args[1] === "true" || args[1] === "on") {
+    if (args[0] === "cooldown" || args[0] == "cd") {
+        if (args[1] === "true" || args[1] === "on") {
+            if (perm.Sadmin || perm.host) {
                 cool = true
                 msg.channel.send(`Cooldown For ${commannd} Has Setted To true`)
-                return
             }
-            if (args[1] === "false" || args[1] === "off") {
+            return
+        }
+        if (args[1] === "false" || args[1] === "off") {
+            if (perm.Sadmin || perm.host) {
                 cool = false
                 msg.channel.send(`Cooldown For ${commannd} Has Setted To false`)
-                return
             }
+            return
         }
     }
     const axios = require("axios")
