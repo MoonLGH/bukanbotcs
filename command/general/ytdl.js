@@ -13,7 +13,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     });
     stream.on('end', function () {
         let vid = Buffer.concat(bufs);
-        if(Buffer.byteLength(vid) >= 8388608) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n${args[0].replace("youtube","ssyoutube")}`)
+        if(Buffer.byteLength(vid) >= 8388608) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
         msg.channel.send("Download Sucsess", {
             files: [{
                 attachment: vid,
