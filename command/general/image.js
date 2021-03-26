@@ -7,14 +7,18 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         if (args[1] === "true" || args[1] === "on") {
             if (perm.Sadmin || perm.host) {
                 cool = true
-                msg.channel.send(`Cooldown For ${commannd} Has Setted To true`)
+                msg.channel.send(`Cooldown For ${command} Has Setted To true`)
+            } else {
+                msg.channel.send(`You Are Not A Admin`)
             }
             return
         }
         if (args[1] === "false" || args[1] === "off") {
             if (perm.Sadmin || perm.host) {
                 cool = false
-                msg.channel.send(`Cooldown For ${commannd} Has Setted To false`)
+                msg.channel.send(`Cooldown For ${command} Has Setted To false`)
+            } else {
+                msg.channel.send(`You Are Not A Admin`)
             }
             return
         }
