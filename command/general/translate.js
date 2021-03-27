@@ -4,13 +4,16 @@ const config = require("../../config.json")
 exports.execute = async function (msg, command, args, client, D, perm, color) {
 
 
+    if(args[0] == "code-name"){
+        msg.reply("https://github.com/MoonLGH/bukanbotcs/blob/main/command/general/langs.js \nFor Languages")
+    }
     if(!args[0])return msg.reply(`Do ${config.prefix}${command} [From Language] [To Language] "What you want to translate"`)
     let from
-    if (lang.isSupported(args[0]) == false) return msg.reply("No Language Founded By That Type")
+    if (lang.isSupported(args[0]) == false) return msg.reply("No Language Founded By That Type\nTry Doing "+`${config.prefix}${command} code-name`)
     from = args.shift()
 
     let to
-    if (lang.isSupported(args[0]) == false) return msg.reply("No Language Founded By That Type")
+    if (lang.isSupported(args[0]) == false) return msg.reply("No Language Founded By That Type\nTry Doing "+`${config.prefix}${command} code-name`)
     to = args.shift()
     // if(lang.isSupported(args[0]) && lang.isSupported(args[1]))
 
