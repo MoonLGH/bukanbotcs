@@ -148,6 +148,16 @@ function isSupported(desiredLang) {
     return Boolean(getCode(desiredLang));
 }
 
+function getname(lang){
+
+    let code = getCode(lang)
+
+    // return langs.code
+    return langs[code]
+
+}
 
 exports.isSupported = isSupported;
 exports.getCode = getCode;
+exports.list = langs;
+exports.getname = getname;
