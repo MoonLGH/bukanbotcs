@@ -13,7 +13,7 @@ exports.premission = function(msg,D){
     hostmsg.setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
     hostmsg.setColor(color)
 
-    if(msg.author) return {Sadmin:true,host:true,hostmsg:hostmsg}
+    if(msg.channel.type === "dm") return {Sadmin:true,host:true,hostmsg:hostmsg}
 
 
     let Sadmin , host
