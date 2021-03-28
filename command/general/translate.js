@@ -5,7 +5,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
 
     if (args[0] == "code-name") {
-        return msg.reply("https://github.com/MoonLGH/bukanbotcs/blob/main/command/general/langs.js \nFor List of Languages(and their code) \NOr Do " + `${config.prefix}${command} dm-code-name if you are to lazy to open github`)
+        return msg.reply("https://github.com/MoonLGH/bukanbotcs/blob/main/command/general/langs.js \nFor List of Languages(and their code) \nOr Do " + `${config.prefix}${command} dm-code-name if you are to lazy to open github`)
     }
     if (args[0] == "dm-code-name") {
         let embed = new D.MessageEmbed()
@@ -14,15 +14,12 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             .setColor(color)
             .addField("Language", "Language name", true)
             .addField("CodeName", "Codename Of languages", true)
-            .addField("\u200B", "\u200B", false)
 
         for (const [key, value] of Object.entries(lang.list)) {
-            embed.addField(value, "\u200B", true)
-            embed.addField(key, "\u200B", true)
-            embed.addField("\u200B", "\u200B", false)
+            embed.addField(value, key, true)
         }
 
-        msg.author.send(embed)
+        return msg.author.send(embed)
     }
     if (!args[0]) return msg.reply(`Do ${config.prefix}${command} [From Language] [To Language] "What you want to translate"`)
     let from
