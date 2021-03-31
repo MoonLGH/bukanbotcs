@@ -5,6 +5,9 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
         reason = false
         msg.channel.send("Okay, " + msg.author.username + " Is Now Added To Afk List")
     }else{
+        if(args.join(" ").includes("\n")){
+            reason = "your afk reason contains new line"
+        }
         reason = args.join(" ")
         msg.channel.send("Okay, " + msg.author.username + " Is Now Added To Afk List" + ` With Reason = ${reason}`)
     }
