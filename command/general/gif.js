@@ -36,7 +36,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     let image = []
     $("#view > div > div > div > div.GifList > div").each(function () {
         $(this).find("figure").each(function () {
-            imageurl = $("a > div.Gif > img").attr("src")
+            imageurl = $(this).find("a > div.Gif > img").attr("src")
             from = $(this).find("a > div.Gif > img").attr("src")
             image.push({
                 imageurl,
