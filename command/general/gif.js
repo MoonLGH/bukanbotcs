@@ -37,15 +37,13 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     let $ = cheerio.load(data.data)
 
     $("#view > div > div > div > div.GifList > div").each(function () {
-        let imageurl
-        let from 
         $(this).find("figure").each(function () {
-            imageurl = $("a > div.Gif > img").attr("src")
-            from = $(this).find("a").attr("href").replace("/","https://tenor/")
-        })
-        image.push({
-            imageurl,
-            from
+            let imageurl = $("a > div.Gif > img").attr("src")
+            let from = $(this).find("a > div.Gif > img").attr("src")
+            image.push({
+                imageurl,
+                from
+            })
         })
     })
 
