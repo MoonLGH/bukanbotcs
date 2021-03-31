@@ -5,6 +5,7 @@ const prefix = config.prefix
 const token = process.env.Token || config.token
 const color = 'RANDOM'
 const msconv = require('./ext_module/MsConv.js')
+const sleephandler = require('./ext_module/sleephandler.js')
 const ready = require('./ext_module/ready.js')
 
 client.on('ready', async () => {
@@ -35,6 +36,7 @@ const cooldownsaran = new Set()
 const cooldownlapor = new Set()
 const cooldownt = new Set()
 client.on('message', async (msg) => {
+  sleephandler.sleep(msg)
   const handler = require('./ext_module/commandhandler')
   if (!msg.content.toLowerCase().startsWith(prefix)) return
   const args = msg.content.slice(prefix.length).split(/ +/)
