@@ -2,8 +2,6 @@ const cd = new Set()
 let cool
 let numb
 exports.execute = async function (msg, command, args, client, D, perm, color) {
-    let image = []
-
     if (args[0] === "cooldown" || args[0] == "cd") {
         if (args[1] === "true" || args[1] === "on") {
             if (perm.Sadmin || perm.host) {
@@ -35,11 +33,11 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     const data = await axios.get("https://tenor.com/search/" + args.join(" "))
 
     let $ = cheerio.load(data.data)
-
+    let image = []
     $("#view > div > div > div > div.GifList > div").each(function () {
         $(this).find("figure").each(function () {
-            let imageurl = $("a > div.Gif > img").attr("src")
-            let from = $(this).find("a > div.Gif > img").attr("src")
+            imageurl = $("a > div.Gif > img").attr("src")
+            from = $(this).find("a > div.Gif > img").attr("src")
             image.push({
                 imageurl,
                 from
