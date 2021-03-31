@@ -1,6 +1,6 @@
 let isusersleep = new Set()
 exports.execute = function (msg, command, args, client, D, perm, color) {
- msg.channel.send("Okay, "+msg.author.userame+" Is Now Sleeping")
+ msg.channel.send("Okay, "+msg.author.username+" Is Now Sleeping")
  isusersleep.add(msg.author.id)
 }
 
