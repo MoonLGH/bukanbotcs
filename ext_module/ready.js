@@ -19,7 +19,7 @@ const now = new Date()
 function sendmsg(client,D){
     const embed = new D.MessageEmbed()
     .setAuthor(client.user.tag,client.user.displayAvatarURL())
-    .setDescription(`Bot Just Turned On At ${now.getHours}:${now.getMinutes}`)
+    .setDescription(`Bot Just Turned On At ${now.getHours()}:${now.getMinutes()}`)
     .addField("Ready!","Bot Just Got On")
     .setFooter(client.user.tag,client.user.displayAvatarURL())
     client.channels.cache.get("827236403263569980").send(embed)
