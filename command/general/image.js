@@ -32,8 +32,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     const axios = require("axios")
     const cheerio = require("cheerio")
 
-    // const data = await axios.get("https://results.dogpile.com/serp?qc=images&q=" + args.join(" "))
-    const data = await axios.get("https://results.dogpile.com/serp?qc=images&q=" + "Rick Roll")
+    const data = await axios.get("https://results.dogpile.com/serp?qc=images&q=" + args.join(" "))
+    // const data = await axios.get("https://results.dogpile.com/serp?qc=images&q=" + "Rick Roll")
 
     let $ = cheerio.load(data.data)
 
