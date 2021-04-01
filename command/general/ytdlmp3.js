@@ -17,7 +17,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         msg.channel.send("Download Sucsess", {
             files: [{
                 attachment: vid,
-                name: title+".mp4"
+                name: title+".mp3"
             }]
         })
     })
