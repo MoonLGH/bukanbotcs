@@ -9,7 +9,7 @@ const ffmpeg = require('fluent-ffmpeg');
  * @param {*} spinner ora spinner to show download progress
  * @param {function} callback callback after work finishes
  */
-const download = (youtubeLink, output, spinner, callback) => {
+const download = (youtubeLink, output, msg, callback) => {
     const download = ytdl(youtubeLink, options);
 
     ffmpeg(download)
@@ -17,7 +17,7 @@ const download = (youtubeLink, output, spinner, callback) => {
         .save(`${output}`)
         .format('mp3')
         .on('end', () => {
-            spinner.succeed('Download completed.');
+            msg.channel.send('Download completed.');
             if (typeof callback === "function") callback();
         });
 };

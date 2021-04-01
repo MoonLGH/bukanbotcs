@@ -6,7 +6,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     let title = info.videoDetails.title
     let bufs = [];
     let stream = ytdl(args[0], {
-        filter: format => format.container === 'mp3'
+        filter: format => format.container === 'mp3',
+        quality: 'highestaudio'
     });
     stream.on('data', function (d) {
         bufs.push(d);
