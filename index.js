@@ -595,7 +595,7 @@ client.on('message', async (msg) => {
     }else if(command == "rolelist"){
       if(!msg.mentions.members.first()) return msg.reply("Mention/Put An Username")
       const Mentuser = msg.mentions.members.first()
-      const had = Mentuser.roles.map(r => r.name).join('\n')
+      const had = Mentuser.roles.cache.map(r => r.name).join('\n')
 
       const embed = new D.MessageEmbed()
         .setAuthor('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
