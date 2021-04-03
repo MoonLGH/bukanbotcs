@@ -592,6 +592,19 @@ client.on('message', async (msg) => {
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
       msg.channel.send(embed)
+    }else if(command == "rolelist"){
+      if(!msg.mentions.users.first()) return msg.reply("Mention/Put An Username")
+      const Mentuser = msg.mentions.users.first()
+      const had = Mentuser.roles.map(r => r.name).join('\n')
+
+      const embed = new D.MessageEmbed()
+        .setAuthor('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setTitle(Mentuser.username)
+        .addField(`What Roles do he have ?`, had)
+        .setTimestamp()
+        .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setColor(color)
+      msg.channel.send(embed)
     }
 
   } catch (error) {
@@ -599,7 +612,7 @@ client.on('message', async (msg) => {
         .setAuthor(client.user.tag,client.user.displayAvatarURL())
         .addField("Error Occured!",error)
         .addField("Error Stack",error.stack)
-        .addField("Error File",error.fileName)
+        .addField("Error Destination",error.dest)
         .addField("Error Line",error.lineNumber)
         .addField("Error Column Number",error.columnNumber)
         .setFooter(client.user.tag,client.user.displayAvatarURL())
