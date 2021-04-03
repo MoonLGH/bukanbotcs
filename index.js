@@ -562,8 +562,18 @@ client.on('message', async (msg) => {
       }
     } else if (command == 'inrole') {
       if(!msg.mentions.roles.first()) return msg.reply("Mention/Put An Role")
-      const had = msg.mentions.roles.first().members.map(m => m.user.tag).join('\n')
-      console.log(had)
+      let role = msg.mentions.roles.first()
+      const had = role.members.map(m => m.user.tag).join('\n')
+
+      const embed = new D.MessageEmbed()
+        .setAuthor('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setTitle(role.name)
+        .addField(`Who is in it ?`, had)
+        .setTimestamp()
+        .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setColor(color)
+      msg.channel.send(embed)
+      
     } else if (command == 'botruntime') {
       const con = msconv.ms(client.uptime, 'ms')
       const sec = con.seconds
