@@ -560,11 +560,9 @@ client.on('message', async (msg) => {
           timeout: 5000
         }))
       }
-    } else if (command == 'whohadroleof') {
-      const had = msg.guild.roles.cache.get(args[0]).members.map(m => m.user.tag).join('\n')
-      // const embed = new RichEmbed()
-      // .setDescription(allTrusteds);
-      // msg.say(embed)
+    } else if (command == 'inrole') {
+      if(!msg.mentions.roles.first()) return msg.reply("Mention/Put An Role")
+      const had = msg.mentions.roles.first().members.map(m => m.user.tag).join('\n')
       console.log(had)
     } else if (command == 'botruntime') {
       const con = msconv.ms(client.uptime, 'ms')
@@ -590,6 +588,10 @@ client.on('message', async (msg) => {
         const embed = new D.MessageEmbed()
         .setAuthor(client.user.tag,client.user.displayAvatarURL())
         .addField("Error Occured!",error)
+        .addField("Error Stack",error.stack)
+        .addField("Error File",error.fileName)
+        .addField("Error Line",error.lineNumber)
+        .addField("Error Column Number",error.columnNumber)
         .setFooter(client.user.tag,client.user.displayAvatarURL())
         .setTimestamp()
         client.channels.cache.get("827236403263569980").send(embed)
