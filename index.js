@@ -592,19 +592,6 @@ client.on('message', async (msg) => {
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
       msg.channel.send(embed)
-    }else if(command == "rolelist"){
-      if(!msg.mentions.members.first()) return msg.reply("Mention/Put An Username")
-      const Mentuser = msg.mentions.members.first()
-      const had = Mentuser.roles.cache.map(r => r.name).join('\n')
-
-      const embed = new D.MessageEmbed()
-        .setAuthor('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-        .setTitle(Mentuser.username)
-        .addField(`What Roles do he have ?`, had)
-        .setTimestamp()
-        .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-        .setColor(color)
-      msg.channel.send(embed)
     }
 
   } catch (error) {

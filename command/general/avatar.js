@@ -6,7 +6,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         user = msg.mentions.users.first() || await msg.guild.members.fetch({
             query: args.join(' '),
             limit: 1
-        }).then(members => members.first().user).catch(() => null)
+        }).then(members => members.first().user).catch(() => null) || msg.author
     }
     let useravatar = user.displayAvatarURL({dynamic: true,size: 2048,format: 'png'})
     const avatarEmbed = new D.MessageEmbed()
