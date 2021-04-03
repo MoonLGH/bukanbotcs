@@ -593,8 +593,8 @@ client.on('message', async (msg) => {
         .setColor(color)
       msg.channel.send(embed)
     }else if(command == "rolelist"){
-      if(!msg.mentions.users.first()) return msg.reply("Mention/Put An Username")
-      const Mentuser = msg.mentions.users.first()
+      if(!msg.mentions.members.first()) return msg.reply("Mention/Put An Username")
+      const Mentuser = msg.mentions.members.first()
       const had = Mentuser.roles.map(r => r.name).join('\n')
 
       const embed = new D.MessageEmbed()
