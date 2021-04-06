@@ -1,3 +1,4 @@
+const fs = require("fs")
 exports.slash = function (client, D) {
     client.api.applications(client.user.id).commands.post({
         data: {
