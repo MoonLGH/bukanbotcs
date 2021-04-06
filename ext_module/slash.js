@@ -58,7 +58,7 @@ exports.slash = function (client, D) {
         const commandFiles = fs.readdirSync('./command/slash').filter(file => file.endsWith('.js'));
 
         for (const file of commandFiles) {
-            const command = require(`./commands/${file}`);
+            const command = require(`./commands/slash/${file}`);
             if (command == command.name) {
                 const embed = new D.MessageEmbed()
                     .setTitle("Testing...")
@@ -112,7 +112,7 @@ exports.handler = function (client, D) {
     const commandFiles = fs.readdirSync('./command/slash').filter(file => file.endsWith('.js'));
 
     for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
+        const command = require(`./commands/slash/${file}`);
         client.api.applications(client.user.id).commands.post({
             data: {
                 name: command.name,
