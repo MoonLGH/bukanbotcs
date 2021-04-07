@@ -1,5 +1,6 @@
-const {MessageAttachment,MessageEmbed,DataResolver,MessageFlags,Util} = require('discord.js');
-
+const {DataResolver,MessageFlags,Util} = require('discord.js');
+let MessageAttachment = require("./MessageAttachment")
+let MessageEmbed = require("./MessageEmbed")
 /**
  * Represents a message to be sent to the API.
  */
