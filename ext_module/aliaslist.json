@@ -4,6 +4,7 @@
     "avatar":["pfp"],
     "sleep":["tidur"],
     "translate":["trans"],
+    "replytest":["inlinereply","reply","apiinlinereply","apiinlinereplies"],
     
     "_comment1": ["Owner Authority"], 
     "setbotactivity" : ["sba","botactivity","setbotact","botact"],
