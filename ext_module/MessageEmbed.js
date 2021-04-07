@@ -1,23 +1,6 @@
 'use strict';
 
-function makeDiscordjsError(Base) {
-  return class DiscordjsError extends Base {
-    constructor(key, ...args) {
-      super(message(key, args));
-      this[kCode] = key;
-      if (Error.captureStackTrace) Error.captureStackTrace(this, DiscordjsError);
-    }
-
-    get name() {
-      return `${super.name} [${this[kCode]}]`;
-    }
-
-    get code() {
-      return this[kCode];
-    }
-  };
-}
-const RangeError = makeDiscordjsError(RangeError)
+const { RangeError } = require('./errors')
 const {Util} = require('discord.js');
 
 /**
