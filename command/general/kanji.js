@@ -1,6 +1,7 @@
 const cd = new Set()
 let cool
 let numb
+const prefix = require("../../config.json").prefix
 exports.execute = async function (msg, command, args, client, D, perm, color) {
     let kanjis = []
 
@@ -46,6 +47,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     let embed = new D.MessageEmbed()
         .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setTimestamp()
+        .setDescription("Use command `"+prefix+ "jisho "+kanjis[index].text +"` To see the kanjis on jisho" )
         .addField("Kanji",kanjis[index].text)
         .setFooter(`${index+1} / ${kanjis.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
@@ -93,6 +95,7 @@ if(cool === true){
         embed = new D.MessageEmbed()
         .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setTimestamp()
+        .setDescription("Use command `"+prefix+ "jisho "+kanjis[index].text +"` To see the kanjis on jisho" )
         .addField("Kanji",kanjis[index].text)
         .setFooter(`${index+1} / ${kanjis.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
@@ -107,6 +110,7 @@ if(cool === true){
         embed = new D.MessageEmbed()
         .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setTimestamp()
+        .setDescription("Use command `"+prefix+ "jisho "+kanjis[index].text +"` To see the kanjis on jisho" )
         .addField("Kanji",kanjis[index].text)
         .setFooter(`${index+1} / ${kanjis.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
