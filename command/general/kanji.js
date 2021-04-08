@@ -87,7 +87,7 @@ if(cool === true){
     })
 
     forwards.on("collect", async f => {
-        if (index+1 <= image.length) {
+        if (index+1 <= kanjis.length) {
             index += 1
         }
         embed = new D.MessageEmbed()
