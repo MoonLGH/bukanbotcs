@@ -13,7 +13,7 @@
     "@vitalets/google-translate-api": "^5.1.0",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
-    "discord.js": "^12.3.1",
+    "discord.js": "^12.5.3",
     "djsmaster": "github:discordjs/discord.js",
     "google-translate-api": "^2.3.0",
     "nana-api": "^1.1.3",
