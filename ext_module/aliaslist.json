@@ -5,6 +5,7 @@
     "sleep":["tidur"],
     "translate":["trans"],
     "replytest":["inlinereply","reply","apiinlinereply","apiinlinereplies"],
+    "alexa":["ai"],
     
     "_comment1": ["Owner Authority"], 
     "setbotactivity" : ["sba","botactivity","setbotact","botact"],
