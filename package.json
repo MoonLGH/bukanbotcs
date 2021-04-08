@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "15.5.1"
+  },
   "dependencies": {
     "@vitalets/google-translate-api": "^5.1.0",
     "axios": "^0.21.1",
