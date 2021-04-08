@@ -4,8 +4,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
 }
 
-let Dmaster = require("djsmaster")
-let { APIMessage } = Dmaster
+let {APIMessage} = require("djsmaster")
 
 function reply(msg, content, options) {
     return msg.channel.send(
