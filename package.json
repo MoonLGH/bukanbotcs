@@ -17,6 +17,7 @@
     "discord.js": "^12.5.3",
     "djsmaster": "github:discordjs/discord.js",
     "google-translate-api": "^2.3.0",
+    "imageapi.js": "^1.6.1",
     "nana-api": "^1.1.3",
     "unofficial-jisho-api": "^2.0.13",
     "ytdl-core": "^4.5.0"

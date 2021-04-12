@@ -27,7 +27,7 @@ function doRandHT() {
   const rand = ['500', 'Garuda']
 
   return rand[Math.floor(Math.random() * rand.length)]
-}
+} 
 
 function doRandHT1() {
   const rand = ['1000', 'angklung']
