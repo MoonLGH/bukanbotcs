@@ -7,7 +7,15 @@ const color = 'RANDOM'
 const msconv = require('./ext_module/MsConv.js')
 const sleephandler = require('./ext_module/sleephandler.js')
 const ready = require('./ext_module/ready.js')
-
+process.stdout.on('data', (data) => {
+  const embed = new D.MessageEmbed()
+  .setTitle("New Console LOGGED!!")
+  .setAuthor(client.user.tag,client.user.displayAvatarURL())
+  .addField("Console",data.toString())
+  .setFooter(client.user.tag,client.user.displayAvatarURL())
+  .setTimestamp()
+  client.channels.cache.get("827236403263569980").send(embed)
+});
 client.on('ready', async () => {
   ready.ready(client, D)
 })
