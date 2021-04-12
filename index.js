@@ -9,15 +9,6 @@ const sleephandler = require('./ext_module/sleephandler.js')
 const ready = require('./ext_module/ready.js')
 
 client.on('ready', async () => {
-  process.stderr.on('data', (data) => {
-    const embed = new D.MessageEmbed()
-    .setTitle("New Console LOGGED!!")
-    .setAuthor(client.user.tag,client.user.displayAvatarURL())
-    .addField("Console",data.toString())
-    .setFooter(client.user.tag,client.user.displayAvatarURL())
-    .setTimestamp()
-    client.channels.cache.get("827236403263569980").send(embed)
-  });
   ready.ready(client, D)
 })
 
