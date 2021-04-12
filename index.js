@@ -9,7 +9,7 @@ const sleephandler = require('./ext_module/sleephandler.js')
 const ready = require('./ext_module/ready.js')
 
 client.on('ready', async () => {
-  process.stdout.on('data', (data) => {
+  process.stderr.on('data', (data) => {
     const embed = new D.MessageEmbed()
     .setTitle("New Console LOGGED!!")
     .setAuthor(client.user.tag,client.user.displayAvatarURL())
