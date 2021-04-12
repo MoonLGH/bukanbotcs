@@ -1,5 +1,7 @@
 const D = require('djsmaster')
-const client = new D.Client({ intents: D.Intents.ALL })
+const client = new D.Client({
+  intents: D.Intents.ALL
+})
 const config = require('./config.json')
 const prefix = config.prefix
 const token = process.env.Token || config.token
@@ -9,13 +11,10 @@ const sleephandler = require('./ext_module/sleephandler.js')
 const ready = require('./ext_module/ready.js')
 
 client.on('ready', async () => {
-  console.log = (m) =>{
-    const embed = new D.MessageEmbed()
-    .setAuthor(client.user.tag,client.user.displayAvatarURL())
-    .addField("Console Log!",m)
-    .setFooter(client.user.tag,client.user.displayAvatarURL())
-    .setTimestamp()
-    client.channels.cache.get("827236403263569980").send(embed)
+  const oldLog = console.log;
+  console.log = m => {
+    logToDiscord(m);
+    oldLog(m);
   }
   ready.ready(client, D)
 })
@@ -569,7 +568,7 @@ client.on('message', async (msg) => {
         }))
       }
     } else if (command == 'inrole') {
-      if(!msg.mentions.roles.first()) return msg.reply("Mention/Put An Role")
+      if (!msg.mentions.roles.first()) return msg.reply("Mention/Put An Role")
       let role = msg.mentions.roles.first()
       const had = role.members.map(m => m.user.tag).join('\n')
 
@@ -581,7 +580,7 @@ client.on('message', async (msg) => {
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
       msg.channel.send(embed)
-      
+
     } else if (command == 'botruntime') {
       const con = msconv.ms(client.uptime, 'ms')
       const sec = con.seconds
@@ -603,16 +602,16 @@ client.on('message', async (msg) => {
     }
 
   } catch (error) {
-        const embed = new D.MessageEmbed()
-        .setAuthor(client.user.tag,client.user.displayAvatarURL())
-        .addField("Error Occured!",error)
-        .addField("Error Stack",error.stack)
-        .addField("Error Destination",error.dest)
-        .addField("Error Line",error.lineNumber)
-        .addField("Error Column Number",error.columnNumber)
-        .setFooter(client.user.tag,client.user.displayAvatarURL())
-        .setTimestamp()
-        client.channels.cache.get("827236403263569980").send(embed)
+    const embed = new D.MessageEmbed()
+      .setAuthor(client.user.tag, client.user.displayAvatarURL())
+      .addField("Error Occured!", error)
+      .addField("Error Stack", error.stack)
+      .addField("Error Destination", error.dest)
+      .addField("Error Line", error.lineNumber)
+      .addField("Error Column Number", error.columnNumber)
+      .setFooter(client.user.tag, client.user.displayAvatarURL())
+      .setTimestamp()
+    client.channels.cache.get("827236403263569980").send(embed)
   }
 })
 
