@@ -1,5 +1,5 @@
 const D = require('djsmaster')
-const client = new D.Client({ intents: Intents.ALL })
+const client = new D.Client({ intents: D.Intents.ALL })
 const config = require('./config.json')
 const prefix = config.prefix
 const token = process.env.Token || config.token
