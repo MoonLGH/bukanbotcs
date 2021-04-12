@@ -5,7 +5,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
     const advanced = await api.advanced(args[0]);
 
-    const embed = D.MessageEmbed()
+    const embed = new D.MessageEmbed()
     .addField("EndPoint",`https://reddit.com/r/${args[0]}`)
     .addField("Upvote/DownVote",`${advanced.upvotes}/${advanced.downvotes}`)
     .addField("Author",`${advanced.author}`)
