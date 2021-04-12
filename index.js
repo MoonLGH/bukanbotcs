@@ -19,6 +19,10 @@ client.on('ready', async () => {
   ready.ready(client, D)
 })
 
+function logToDiscord(m){
+  client.channels.cache.get("831195323820408902").send(`Console Log: ${m}`)
+}
+
 function doRandHT() {
   const rand = ['500', 'Garuda']
 
