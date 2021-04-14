@@ -2,7 +2,10 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     try {
         const matches = msg.content.match(/```(?:(?<lang>\S+)\n)?\s?(?<code>[^]+?)\s?```/)?.groups || msg.content.match(/```(?<code>[^]+?)\s?```/)?.groups
         let evaled = eval(matches.code)
-        msg.channel.send(evaled)
+        
+        if(evaled !== null){
+            msg.channel.send(evaled)
+        }
     } catch (error) {
         const embed = new D.MessageEmbed()
             .setAuthor(client.user.tag, client.user.displayAvatarURL())

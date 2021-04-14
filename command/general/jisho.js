@@ -9,7 +9,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     const embed = new D.MessageEmbed()
         .addField('Taught in: ', result.taughtIn)
         .addField('JLPT level: ', result.jlptLevel)
-        .addField('Newspaper frequency rank: ', result.newspaperFrequencyRank)
+        .addField('Newspaper frequency rank: ', result.newspaperFrequencyRank) 
         .addField('Stroke count: ', result.strokeCount)
         .addField('Meaning: ', result.meaning)
         .addField('Kunyomi: ', result.kunyomi.join(","))
