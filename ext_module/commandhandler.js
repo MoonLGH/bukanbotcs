@@ -48,10 +48,8 @@ exports.execute = function (msg, command, args, client, D) {
 
 function alias(command) {
     for (const key of Object.keys(aliases)) {
-        for (const val of aliases[key]) {
-            if (val == command || command == key) {
-                return key;
-            }
+        if (key == command) {
+            return key;
         }
     }
     return null;
