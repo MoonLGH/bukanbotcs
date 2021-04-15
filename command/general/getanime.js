@@ -16,13 +16,23 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
     const embed = new D.MessageEmbed()
     .setTitle(`${title}`)
-    .addField("Japanese Title",`${japaneseTitle}`)
-    .addField("synonyms",`${synonyms}`)
-    .addField("synopsis",`${synopsis}`)
-    .addField("Episodes",`${episodes}`)
-    .addField("Genres",`${genres}`)
-    .addField("Studios",`${studios}`)
-    .addField("Type",`${type}`)
-    .setImage(image)
+    if(japaneseTitle){
+        embed.addField("Japanese Title",`${japaneseTitle}`)
+    }if(synonyms){
+        embed.addField("synonyms",`${synonyms}`)
+    }
+    if(synopsis){
+        embed.addField("synopsis",`${synopsis}`)
+    }if(episodes){
+        embed.addField("Episodes",`${episodes}`)
+    }if(genres){
+        embed.addField("Genres",`${genres}`)
+    }if(studios){
+        embed.addField("Studios",`${studios}`)
+    }if(type){
+        embed.addField("Type",`${type}`)
+
+    }
+    embed.setImage(image)
     msg.channel.send(embed)
 }
