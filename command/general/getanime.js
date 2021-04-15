@@ -1,7 +1,7 @@
 const malScraper = require('mal-scraper');
 
 exports.execute = async function (msg, command, args, client, D, perm, color) {
-    const result = await malScraper.getInfoFromName("strike")
+    const result = await malScraper.getInfoFromName(args.join(" "))
     const title = result.title
     const synopsis = result.synopsis
     const image = result.picture
