@@ -9,6 +9,7 @@ const color = 'RANDOM'
 const msconv = require('./ext_module/MsConv.js')
 const sleephandler = require('./ext_module/sleephandler.js')
 const ready = require('./ext_module/ready.js')
+const tags = require('./ext_module/tags.js')
 
 client.on('ready', async () => {
   const oldLog = console.log;
@@ -54,6 +55,7 @@ client.on('message', async (msg) => {
     const args = msg.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
     handler.execute(msg, command, args, client, D)
+    tags.execute(msg,command,args,client,D)
     const host = msg.member.roles.cache.get(config.host)
     const Sadmin = msg.member.roles.cache.get(config.superadmin)
     // admin preventer
