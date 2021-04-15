@@ -4,7 +4,7 @@ exports.execute = function (msg, command, args, client, D) {
     if ((command == "tags" || command == "tag") && (args[0] === "make" || args[0] === "create")) {
         let tagname = args[1]
 
-        let tagreply = args.splice(2)
+        let tagreply = args.splice(2).join(" ")
         tags[tagname] = {
             reply: tagreply
         }
