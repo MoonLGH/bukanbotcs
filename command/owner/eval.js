@@ -4,7 +4,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         let evaled = eval(matches.code)
         
         if(evaled !== null){
-            msg.channel.send(evaled)
+            await msg.channel.send(evaled)
         }
     } catch (error) {
         const embed = new D.MessageEmbed()
