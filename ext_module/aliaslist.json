@@ -6,6 +6,7 @@
     "translate":["trans"],
     "replytest":["inlinereply","reply","apiinlinereply","apiinlinereplies"],
     "alexa":["ai"],
+    "urban":["ud","udictionary","dictionary"],
     
     "_comment1": ["Owner Authority"], 
     "setbotactivity" : ["sba","botactivity","setbotact","botact"],

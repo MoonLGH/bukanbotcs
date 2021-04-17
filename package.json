@@ -21,6 +21,7 @@
     "mal-scraper": "^2.11.3",
     "nana-api": "^1.1.3",
     "unofficial-jisho-api": "^2.0.13",
+    "urban-dictionary": "^3.0.0",
     "ytdl-core": "^4.5.0"
   },
   "scripts": {
