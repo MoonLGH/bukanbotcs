@@ -6,8 +6,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         let embed = new D.MessageEmbed()
             .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setTimestamp()
-            .addField(results.term, result.preview)
-            .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .addField(results.term, results.preview)
+            .setFooter(`${index+1} / ${results.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color);
         const embedsend = await msg.channel.send(embed)
         await embedsend.react("🗑️")
@@ -38,8 +38,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             embed = new D.MessageEmbed()
                 .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
                 .setTimestamp()
-                .addField(results.term, result.preview)
-                .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+                .addField(results.term, results.preview)
+                .setFooter(`${index+1} / ${results.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
                 .setColor(color);
             embedsend.edit(embed)
         })
@@ -51,8 +51,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             embed = new D.MessageEmbed()
                 .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
                 .setTimestamp()
-                .addField(results.term, result.preview)
-                .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+                .addField(results.term, results.preview)
+                .setFooter(`${index+1} / ${results.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
                 .setColor(color);
 
             embedsend.edit(embed)
