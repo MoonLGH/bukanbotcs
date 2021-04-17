@@ -2,7 +2,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     const ud = require('urban-dictionary')
 
     let index = 0
-    ud.autocompleteExtra(args.join(" ")).then((results) => {
+    ud.autocompleteExtra(args.join(" ")).then(async(results) => {
         let embed = new D.MessageEmbed()
             .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setTimestamp()
