@@ -32,7 +32,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         })
 
         forwards.on("collect", async f => {
-            if (index + 1 <= kanjis.length) {
+            if (index + 1 <= results.length) {
                 index += 1
             }
             embed = new D.MessageEmbed()
