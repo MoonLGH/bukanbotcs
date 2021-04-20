@@ -9,7 +9,8 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setTimestamp()
         .setTitle(result[index].title)
-        .addField(`[${result[index].title}](${result[index].link})`, result[index].snippet)
+        .setDescription(`[${result[index].title}](${result[index].link})`)
+        .addField(`${result[index].title}`, result[index].snippet)
         .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
 
@@ -36,16 +37,17 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     })
 
     forwards.on("collect", async f => {
-        if (index + 1 <= kanjis.length) {
+        if (index + 1 <= result.length) {
             index += 1
         }
         embed = new D.MessageEmbed()
-            .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-            .setTimestamp()
-            .setTitle(result[index].title)
-            .addField(`[${result[index].title}](${result[index].link})`, result[index].snippet)
-            .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-            .setColor(color);
+        .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setTimestamp()
+        .setTitle(result[index].title)
+        .setDescription(`[${result[index].title}](${result[index].link})`)
+        .addField(`${result[index].title}`, result[index].snippet)
+        .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setColor(color);
 
         embedsend.edit(embed)
     })
@@ -55,12 +57,13 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             index -= 1
         }
         embed = new D.MessageEmbed()
-            .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-            .setTimestamp()
-            .setTitle(result[index].title)
-            .addField(`[${result[index].title}](${result[index].link})`, result[index].snippet)
-            .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-            .setColor(color);
+        .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setTimestamp()
+        .setTitle(result[index].title)
+        .setDescription(`[${result[index].title}](${result[index].link})`)
+        .addField(`${result[index].title}`, result[index].snippet)
+        .setFooter(`${index+1} / ${result.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setColor(color);
 
         embedsend.edit(embed)
     })
