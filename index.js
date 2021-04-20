@@ -3,7 +3,7 @@ const client = new D.Client({
   intents: D.Intents.ALL
 })
 const config = require('./config.json')
-const prefix = config.prefix
+let prefix = config.prefix
 const token = process.env.Token || config.token
 const color = 'RANDOM'
 const msconv = require('./ext_module/MsConv.js')
@@ -51,7 +51,8 @@ client.on('message', async (msg) => {
   try {
     sleephandler.sleep(msg)
     const handler = require('./ext_module/commandhandler')
-    if (!msg.content.toLowerCase().startsWith(prefix)) return
+    prefix = config.prefixes.find(p => msg.content.toLowerCase().startsWith(p));
+    if (prefix == undefined) return
     const args = msg.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
     handler.execute(msg, command, args, client, D)
