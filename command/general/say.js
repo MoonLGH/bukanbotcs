@@ -11,6 +11,7 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
         newargs.push(str)
     });
     if(delthis == true){
+        msg.delete()
         msg.channel.send(`${newargs.join(" ")}`)
     }else{
         msg.channel.send(`${newargs.join(" ")}`)
