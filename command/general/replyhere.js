@@ -7,5 +7,5 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 }
 
 function replytomsg(msg, content) {
-
+    msg.reply(content)
 }
