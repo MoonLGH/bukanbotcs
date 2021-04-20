@@ -1,4 +1,4 @@
-exports.execute = function (msg, command, args, client, D, perm, color) {
+exports.execute = async function (msg, command, args, client, D, perm, color) {
     const googleIt = require('google-it')
 
     let result = await googleIt({
