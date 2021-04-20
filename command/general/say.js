@@ -5,7 +5,8 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
     let delthis = false
     args.forEach(str => {
         if (str === "-d" || str == "-del") {
-            return delthis = true
+            delthis = true
+            return
         }
         newargs.push(str)
     });
