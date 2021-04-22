@@ -3,7 +3,10 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
     let index = 0
 
-    const result = await ud.define("idk")
+    const result = await ud.define(args[0])
+    if(!result){
+        msg.channel.send("No Results Founded")
+    }
     let embed = new D.MessageEmbed()
         .setAuthor("Urban Dictionary", 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setTimestamp()
@@ -81,4 +84,4 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
         embedsend.edit(embed)
     })
-}
+}   

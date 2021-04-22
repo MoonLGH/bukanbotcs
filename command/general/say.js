@@ -1,5 +1,5 @@
 exports.execute = function (msg, command, args, client, D, perm, color) {
-    if(!args) return;
+    if(!args && msg.author.bot) return;
 
     let newargs = []
     let delthis = false
