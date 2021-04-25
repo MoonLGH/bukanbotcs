@@ -22,11 +22,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
     if (msg.mentions.users.size > 0) {
         msg.mentions.users.each(user => {
-            if(member.nickname){
-                newargs = newargs.replace(`<@!${user.id}>`, `${user.username}`)
-            }else{
                 newargs = newargs.replace(`<@!${user.id}>`, `${member.username}`)
-            }
         })
     }
     if (delthis == true) {
