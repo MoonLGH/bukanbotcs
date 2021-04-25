@@ -202,10 +202,9 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter('Bukan Poll', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
 
-      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
-
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild || msg.author.id == "460361291962515457") {
         const agree = '👍'
-        const disagree = '👍'
+        const disagree = '👎'
         const send = await msg.channel.send(poll)
         await send.react(agree)
         await send.react(disagree)
