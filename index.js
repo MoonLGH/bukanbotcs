@@ -119,7 +119,8 @@ client.on('message', async (msg) => {
         .addField('Menyalakan DevMode', 'Buka Setting Lalu Nyalakan Developer Mode')
         .addField('Copy Id', 'Klik kanan catergory lalu copy id')
 
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         if (args[0].toLowerCase() == 'help') {
           msg.channel.send(id)
         } else if (isNaN(idc) == true) {
@@ -147,7 +148,8 @@ client.on('message', async (msg) => {
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
 
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         msg.channel.send(suc)
         msg.channel.bulkDelete(much, true)
       } else {
@@ -200,7 +202,8 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter('Bukan Poll', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
 
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         const agree = '👍'
         const disagree = '👍'
         const send = await msg.channel.send(poll)
@@ -318,7 +321,8 @@ client.on('message', async (msg) => {
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
 
       //   const Sadmin = msg.member.roles.cache.get(config.superadmin)
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         if (!msg.mentions.members.first().roles.cache.get(config.roletuna)) {
           msg.mentions.members.first().roles.add(config.roletuna)
         }
@@ -346,7 +350,8 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
 
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         msg.channel.send(tuna)
         if (!msg.mentions.members.first().roles.cache.get(config.roleperingatan)) {
           msg.mentions.members.first().roles.add(config.roleperingatan)
@@ -375,7 +380,8 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
 
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         if (msg.mentions.members.first().roles.cache.get(config.roletuna)) {
           msg.mentions.members.first().roles.remove(config.roletuna)
         }
@@ -522,7 +528,8 @@ client.on('message', async (msg) => {
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
 
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         msg.channel.send(suc)
         setTimeout(() => {
           process.exit()
@@ -544,7 +551,8 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         msg.channel.send(suc)
         ppl.roles.add(role)
       } else {
@@ -564,7 +572,8 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color)
-      if (Sadmin || host) {
+      if (Sadmin || host || msg.guild.id !== "801839309073678346" || !msg.guild) {
+
         msg.channel.send(suc)
         ppl.roles.remove(role)
       } else {

@@ -1,6 +1,7 @@
 const activity = require("./act.js")
 const slash = require("./slash.js")
 const welcome = require("../command/general/welcomer.js")
+require("dotenv").config({path:'../'})
 exports.ready = async function (client, d) {
     const guildname = await client.guilds.fetch('801839309073678346')
 
@@ -21,6 +22,9 @@ function sendmsg(client,D){
     .setAuthor(client.user.tag,client.user.displayAvatarURL())
     .setDescription(`<@${client.user.id}> Just Turned On At ${now.getHours()}:${now.getMinutes()}`)
     .addField("Ready!","Bot Just Got On")
-    .setFooter(client.user.tag,client.user.displayAvatarURL())
+    if(process.env.devbot){
+        embed.addField("Devbot","This is an development Bot")
+    }
+    embed.setFooter(client.user.tag,client.user.displayAvatarURL())
     client.channels.cache.get("827236403263569980").send(embed)
 }
