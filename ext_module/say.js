@@ -8,7 +8,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         }
         newargs.push(str)
     });
-    newargs = newargs.join(" ")
+    newargs = newargs.join(" ").replaceAll("@everyone","everyone")
     if (msg.mentions.members.size > 0) {
         msg.mentions.members.each(member => {
             if(member.nickname){
