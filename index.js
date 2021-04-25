@@ -2,6 +2,7 @@ const D = require('djsmaster')
 const client = new D.Client({
   intents: D.Intents.ALL
 })
+require("dotenv").config()
 const config = require('./config.json')
 let prefix = config.prefix
 const token = process.env.Token || config.token
@@ -51,7 +52,7 @@ client.on('message', async (msg) => {
   try {
     sleephandler.sleep(msg)
     const handler = require('./ext_module/commandhandler')
-    prefix = config.prefixes.find(p => msg.content.toLowerCase().startsWith(p));
+    prefix = process.env.TESTPREFIX || config.prefixes.find(p => msg.content.toLowerCase().startsWith(p));
     if (prefix == undefined) return
     const args = msg.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
