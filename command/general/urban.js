@@ -18,7 +18,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .setFooter(`${index+1} / ${result.length} - Urban Dictionary`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
     if (result[index].example) {
-        embed.addField("Examples", `${result[index].example}`)
+        embed.addField("Examples", `${result[index].example.substr(0, 1000)}`)
     }
 
     const embedsend = await msg.channel.send(embed)
@@ -54,6 +54,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             .setTitle(result[index].word.substr(0, 1000))
             .addField("Definiton", result[index].definition.substr(0, 1000))
             .addField("Written On", result[index].written_on.substr(0, 1000))
+            .addField("Up/Down Vote", `${result[index].thumbs_up}/${result[index].thumbs_down}`)
             .setFooter(`${index+1} / ${result.length} - Urban Dictionary`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color);
         if (result[index].example) {
@@ -74,6 +75,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             .setTitle(result[index].word.substr(0, 1000))
             .addField("Definiton", result[index].definition.substr(0, 1000))
             .addField("Written On", result[index].written_on.substr(0, 1000))
+            .addField("Up/Down Vote", `${result[index].thumbs_up}/${result[index].thumbs_down}`)
             .setFooter(`${index+1} / ${result.length} - Urban Dictionary`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color);
         if (result[index].example) {
