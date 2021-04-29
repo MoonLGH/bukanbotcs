@@ -19,6 +19,7 @@
     "dotenv": "^8.2.0",
     "google-it": "^1.6.2",
     "google-translate-api": "^2.3.0",
+    "hepburn": "^1.2.0",
     "imageapi.js": "^1.6.1",
     "mal-scraper": "^2.11.3",
     "nana-api": "^1.1.3",
