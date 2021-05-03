@@ -5,7 +5,7 @@ const client = new D.Client({
 require("dotenv").config()
 const config = require('./config.json')
 let prefix = config.prefix
-const token = process.env.Token || config.token
+const token = process.env.TOKEN || config.token
 const color = 'RANDOM'
 const msconv = require('./ext_module/MsConv.js')
 const sleephandler = require('./ext_module/sleephandler.js')
