@@ -1,0 +1,11 @@
+---
+application:
+  name: "bukanbotcs"
+  project: "random name"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-bukanbotcs"
+  routes:
+  - application_name: "bukanbotcs"
+    paths:
+    - "/*"
