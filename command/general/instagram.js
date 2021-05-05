@@ -1,4 +1,9 @@
+let work = false
 exports.execute = async function (msg, command, args, client, D, perm, color) {
+
+    if(work === false){
+        return msg.channel.send("This command dont work")
+    }
     var ig = require('instagram-scraping');
 
     if (!args[0]) {
