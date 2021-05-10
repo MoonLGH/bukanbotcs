@@ -10,7 +10,7 @@ module.exports = {
     }],
     interaction: function (msg, client) {
         msg.reply("Slash Interaction Sucsses")
-        dl(msg.options[0].value)
+        dl(msg)
     }
 }
 
