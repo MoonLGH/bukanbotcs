@@ -16,7 +16,7 @@ module.exports = {
 
 let ytdl = require("ytdl-core")
 
-function dl(msg) {
+async function dl(msg) {
     if (ytdl.validateURL(msg.options[0].value) === false) return msg.channel.send("Put An Valid Youtube Link")
     let info = await ytdl.getBasicInfo(msg.options[0].value)
 
