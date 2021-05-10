@@ -1,6 +1,6 @@
-const { MessageEmbed }= require("discord.js")
 module.exports = {
-    name:"testingg",
-    desc:"A Test Slash Command",
-    message: new MessageEmbed().setDescription("Test")
+    name:"test",
+    description:"A Test Slash Command",
+    interaction: function(msg,client){
+    }
 }
