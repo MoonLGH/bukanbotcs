@@ -632,8 +632,3 @@ client.on('message', async (msg) => {
 })
 
 client.login(token)
-const obj = {
-  hello: function () {
-    console.log("hello")
-  }
-}

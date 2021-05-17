@@ -15,6 +15,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
 
   const searchResult = await response.json();
+  if(!searchResult || !searchResult.result || !searchResult.result[0]) return msg.reply("No Result Founded for that")
   const {
     anilist,
     similarity,
