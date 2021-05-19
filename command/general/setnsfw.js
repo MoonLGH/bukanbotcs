@@ -1,9 +1,9 @@
 exports.execute = function (msg, command, args, client, D, perm, color) {
     const suconn = new D.MessageEmbed()
         .setDescription(`Sucsess :white_check_mark:. You just Made this channel nsfw `)
-        .setAuthor('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setAuthor(msg.guild.me.displayName, msg.guild.iconURL({dynamic:true}))
         .setTimestamp()
-        .setFooter('Bukan Cleansound', 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setFooter(msg.guild.me.displayName, msg.guild.iconURL({dynamic:true}))
         .setColor(color)
 
     if (perm.Sadmin || perm.host) {
