@@ -87,7 +87,7 @@ client.on('message', async (msg) => {
   } catch (error) {
     const embed = new D.MessageEmbed()
       .setAuthor(client.user.tag, client.user.displayAvatarURL())
-      .addField("Error Occured!", error.substr(0,1000))
+      .addField("Error Occured!", error)
       .addField("Error Stack", error.stack)
       .addField("Error Destination", error.dest)
       .addField("Error Line", error.lineNumber)

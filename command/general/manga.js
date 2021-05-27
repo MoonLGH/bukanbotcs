@@ -85,6 +85,10 @@ async function home(msg, command, args, client, D, perm, color) {
     if (manga[index].links) {
         embed.addField("Related Links", linkhyperlink(manga[index].links))
     }
+    if(manga[index].id){
+        let cover = await getcover(manga[index].id)
+        embed.setImage(cover)
+    }
     embed.setFooter(`${index+1} / ${manga.length}`, msg.guild.iconURL({dynamic:true}))
         .setColor(color);
     const embedsend = await msg.channel.send(embed)
@@ -161,6 +165,10 @@ async function home(msg, command, args, client, D, perm, color) {
         if (manga[index].links) {
             embed.addField("Related Links", linkhyperlink(manga[index].links))
         }
+        if(manga[index].id){
+            let cover = await getcover(manga[index].id)
+            embed.setImage(cover)
+        }
         embed.setFooter(`${index+1} / ${manga.length}`, msg.guild.iconURL({dynamic:true}))
             .setColor(color);
         embedsend.edit(embed)
@@ -209,6 +217,10 @@ async function home(msg, command, args, client, D, perm, color) {
         if (manga[index].links) {
             embed.addField("Related Links", linkhyperlink(manga[index].links))
         }
+        if(manga[index].id){
+            let cover = await getcover(manga[index].id)
+            embed.setImage(cover)
+        }
         embed.setFooter(`${index+1} / ${manga.length}`, msg.guild.iconURL({dynamic:true}))
             .setColor(color);
         embedsend.edit(embed)
@@ -225,6 +237,30 @@ function gettitles(dataobj) {
     }
     return titles
 }
+async function getcover(mangaid) {
+    const res = await fetch(apiurl.baseurls.mangadex.GetMangaByID + mangaid)
+
+    const mangaobj = await res.json()
+
+    const cid = getcoverid(mangaobj.relationships)
+
+    const coverres = await fetch(apiurl.baseurls.mangadex.GetCoverByID + cid)
+
+    const coverobj = await coverres.json()
+
+    return `${apiurl.baseurls.mangadex.cover}${mangaid}/${coverobj.data.attributes.fileName}`
+
+}
+function getcoverid(relation) {
+    let id = false
+    relation.forEach(r => {
+        if (r.type === "cover_art") {
+            id = r.id
+        }
+    });
+    return id
+}
+
 
 
 function getgenre(arroftags) {

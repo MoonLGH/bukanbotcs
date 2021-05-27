@@ -14,7 +14,13 @@ module.exports ={
             GetMangaByID:"https://api.mangadex.org/manga/",
             // https://api.mangadex.org/manga/{id}
 
-            ping:"https://api.mangadex.org/ping"
+            ping:"https://api.mangadex.org/ping",
+
+            GetCoverByID:"https://api.mangadex.org/cover/",
+            // https://api.mangadex.org/cover/{coverid}
+
+            cover:"https://uploads.mangadex.org/covers/"
+
         }
     }
 }
