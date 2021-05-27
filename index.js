@@ -1,7 +1,5 @@
 const D = require('djsmaster')
-const client = new D.Client({
-  intents: D.Intents.ALL
-})
+const client = new D.Client({intents: D.Intents.ALL})
 require("dotenv").config()
 const config = require('./config.json')
 let prefix = config.prefix
