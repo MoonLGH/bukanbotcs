@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "discord.js": "^12.5.3",
-    "djsmaster": "github:discordjs/discord.js",
+    "djsmaster": "github:monbrey/discord.js#message-components",
     "dotenv": "^8.2.0",
     "genius-lyrics": "^4.2.7",
     "google-it": "^1.6.2",

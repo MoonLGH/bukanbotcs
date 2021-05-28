@@ -44,13 +44,19 @@ exports.slash = async function (client, D) {
 
 function createinteractionevent(client){
 	client.on('interaction', async interaction => {
-		if (!interaction.isCommand()) return;
-		
-		interaction.author = interaction.user
-		console.log(interaction)
-		const cmd = await searchcommand(interaction)
-		if(cmd){
-			await cmd.interaction(interaction,client)
+		if (interaction.isCommand()){
+			interaction.author = interaction.user
+			const cmd = await searchcommand(interaction)
+		   if(cmd){
+			   await cmd.interaction(interaction,client)
+		   }
+		}
+		if (interaction.isMessageComponent() && interaction.componentType === 'BUTTON'){
+			console.log(interaction.message.interaction.commandName)
+			const btn = await searchbutton(interaction)
+			if(btn){
+				await btn.interaction(interaction)
+			}
 		}
 	});
 }
@@ -63,6 +69,23 @@ function searchcommand(interaction){
 		if(command.name === interaction.commandName){
 			return command
 		}
+	}
+	return false
+}
+
+
+function searchbutton(interaction){
+	const commandFiles = fs.readdirSync('./command/slash').filter(file => file.endsWith('.js'));
+
+	for (const file of commandFiles) {
+		const command = require(`../command/slash/${file}`);
+		if(!command.buttons) return
+		for (const btn of command.buttons) {
+			if(btn.name === interaction.customID){
+				return btn
+			}	
+		}
+		
 	}
 	return false
 }
