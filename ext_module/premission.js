@@ -16,6 +16,9 @@ exports.premission = function(msg,D){
     if(msg.channel.type === "dm") return {Sadmin:true,host:true,hostmsg:hostmsg}
 
 
+    if(msg.guild.id !== "801839309073678346") return {Sadmin:true,host:true,hostmsg:hostmsg}
+
+    
     let Sadmin , host
     if(msg.member.roles.cache.get(config.superadmin)) Sadmin = true
     else Sadmin = false
