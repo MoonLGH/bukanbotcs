@@ -19,6 +19,7 @@ module.exports = {
 
         const collector = send.createMessageComponentInteractionCollector(filter)
 
+        
         collector.on('collect', i => console.log(`Collected ${i.customID}`));
         collector.on('end', collected => console.log(`Collected ${collected.size} items`));
 
