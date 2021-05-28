@@ -17,6 +17,11 @@ exports.slash = async function (client, D) {
 				description: command.description,
 				options:command.options
 			})
+			await client.guilds.cache.get("847364405268054076") ?.commands.create({
+				name: command.name,
+				description: command.description,
+				options:command.options
+			})
 			//all
 			await client.application ?.commands.create({
 				name: command.name,
@@ -29,6 +34,8 @@ exports.slash = async function (client, D) {
 		//bcs 
 		await client.guilds.cache.get("801839309073678346") ?.commands.create({name:command.name,description:command.description});
 		//all
+		await client.guilds.cache.get("847364405268054076") ?.commands.create({name:command.name,description:command.description});
+///all
 		await client.application?.commands.create({name:command.name,description:command.description});
 		}
 	}

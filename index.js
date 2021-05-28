@@ -87,11 +87,8 @@ client.on('message', async (msg) => {
   } catch (error) {
     const embed = new D.MessageEmbed()
       .setAuthor(client.user.tag, client.user.displayAvatarURL())
-      .addField("Error Occured!", error)
-      .addField("Error Stack", error.stack)
-      .addField("Error Destination", error.dest)
-      .addField("Error Line", error.lineNumber)
-      .addField("Error Column Number", error.columnNumber)
+      .addField("Error Occured!", error.message.substr(0,1000))
+      .addField("Error Stack", error.stack.substr(0,1000))
       .setFooter(client.user.tag, client.user.displayAvatarURL())
       .setTimestamp()
     client.channels.cache.get("827236403263569980").send(embed)
