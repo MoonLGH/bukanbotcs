@@ -52,7 +52,6 @@ function createinteractionevent(client){
 		   }
 		}
 		if (interaction.isMessageComponent() && interaction.componentType === 'BUTTON'){
-			console.log(interaction.message.interaction.commandName)
 			const btn = await searchbutton(interaction)
 			if(btn){
 				await btn.interaction(interaction)
