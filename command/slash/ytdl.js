@@ -30,13 +30,16 @@ async function dl(msg) {
     });
     stream.on('end', function () {
         let vid = Buffer.concat(bufs);
-        if (Buffer.byteLength(vid) >= 8388608) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
+        
+        if((msg.guild.premiumTier === "NONE" || msg.guild.premiumTier === "TIER_1" || msg.channel.type === "dm")&& Buffer.byteLength(vid) >= 8388608) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
+        if(msg.guild.premiumTier === "TIER_2" && Buffer.byteLength(vid) >= 52428800) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
+        if(msg.guild.premiumTier === "TIER_3" && Buffer.byteLength(vid) >= 104857600) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
+        
         msg.channel.send("Download success ", {
             files: [{
                 attachment: vid,
-                name: title + ".mp4"
+                name: title+".mp4"
             }]
         })
     })
-
 }
