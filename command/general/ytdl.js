@@ -27,9 +27,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         })
     
     } catch (err){
-        if (err === "MinigetError: Status code: 404"){
             msg.channel.send("Video Is Privated Or Region Locked")
-        }
     }
     
 }

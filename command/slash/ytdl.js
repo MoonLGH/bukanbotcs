@@ -44,8 +44,6 @@ async function dl(msg) {
         })
     
     } catch (err){
-        if (err === "MinigetError: Status code: 404"){
             msg.channel.send("Video Is Privated Or Region Locked")
-        }
     }
 }
