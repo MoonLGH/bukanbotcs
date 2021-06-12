@@ -27,7 +27,10 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         })
     
     } catch (err){
-            msg.channel.send("Video Is Privated Or Region Locked")
+        if(err){
+            msg.channel.send("There Is Error When Fetching This Video Url")
+            msg.channel.send("Is This Video Privated Or Region Locked ??")
+        }
     }
     
 }
