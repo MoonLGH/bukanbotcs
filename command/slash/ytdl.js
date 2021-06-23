@@ -44,9 +44,10 @@ async function dl(msg) {
         })
     
     } catch (err){
-            if(err){
-                msg.channel.send("There Is Error When Fetching This Video Url")
-                msg.channel.send("Is This Video Privated Or Region Locked ??")
-            }
+        if(err){
+            msg.channel.send("There Is Error When Fetching This Video Url")
+            msg.channel.send("Is This Video Privated Or Region Locked ??")
+            console.log(err)
+        }
     }
 }

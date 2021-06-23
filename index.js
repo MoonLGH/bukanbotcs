@@ -32,9 +32,9 @@ function doRandHT() {
 client.on('message', async (msg) => {
   try {
     sleephandler.sleep(msg)
-    const handler = require('./ext_module/commandhandler')
+     const handler = require('./ext_module/commandhandler')
     prefix = process.env.TESTPREFIX || config.prefixes.find(p => msg.content.toLowerCase().startsWith(p));
-    if (prefix == undefined) return
+    if (prefix == undefined || !msg.content.startsWith(prefix)) return
     const args = msg.content.slice(prefix.length).split(/ +/)
     const command = args.shift().toLowerCase()
     handler.execute(msg, command, args, client, D)
