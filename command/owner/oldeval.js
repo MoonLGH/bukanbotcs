@@ -9,17 +9,14 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             await msg.channel.send(evaled)
         }
     } catch (err) {
-        const stacktrace = text.joinArrayAndLimit(err.stack.split('\n'),900,'\n');
+      const stacktrace = text.joinArrayAndLimit(err.stack.split('\n'),900,'\n');
       const value = [
         '```xl',
         stacktrace.text,
         stacktrace.excess ? `\nand ${stacktrace.excess} lines more!` : '',
         '```'
       ].join('\n');
-
-      msg.channel.stopTyping();
-      return msg.channel.send(
-        new D.MessageEmbed()
+        const embed = new D.MessageEmbed()
         .setColor('RED')
         .setFooter([
           `${err.name}`,
@@ -29,6 +26,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
           { name: '\\📥 Input', value: `\`\`\`js\n${text.truncate(text.clean(args.join(' ')),1000,'\n...').replaceAll("```","")}\`\`\``  },
           { name: '\\📤 Output', value }
         ])
-      );
+      return msg.channel.send({embeds:[embed]})
     }
 }

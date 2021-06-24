@@ -17,7 +17,9 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .addField("Edited",timeedited.format("MMMM Do YYYY, h:mm:ss a"))
         .setDescription(tag.content)
 
-        msg.channel.send(embed)
+        // msg.channel.send(embed)
+    msg.channel.send({embeds:[embed]})
+
     } else {
         msg.channel.send("Tags Not Founded!!")
     }

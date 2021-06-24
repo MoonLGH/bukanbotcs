@@ -52,7 +52,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     text += `\`${formatTime(from)}\`\n`;
     text += `\`${(similarity * 100).toFixed(1)}% similarity\`\n`;
 
-    msg.channel.send(text, {
+    msg.channel.send({content:text,
         files: [{
             attachment: video,
             name: filename.replace(/`/g, "``")+".mp4"

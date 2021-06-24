@@ -10,15 +10,13 @@ module.exports = {
             .addComponent(new MessageButton().setCustomID('pong').setLabel('pong').setStyle('PRIMARY'))
             .addComponent(new MessageButton().setCustomID('test').setLabel('test').setStyle('PRIMARY'));
 
-        await interaction.reply('Hey!', {
-            components: [row]
-        });
+        await interaction.reply({content:'Hey!',components: [row]});
     },
     buttons: [{
         name: "pong",
         interaction: async function (interaction) {
             await interaction.deferUpdate();
-            await interaction.editReply("Pong", {
+            await interaction.editReply({content:"Pong",
                 components: []
             })
         }
@@ -26,7 +24,7 @@ module.exports = {
         name: "test",
         interaction: async function (interaction) {
             await interaction.deferUpdate();
-            await interaction.editReply("test", {
+            await interaction.editReply({content:"test",
                 components: []
             })
         }

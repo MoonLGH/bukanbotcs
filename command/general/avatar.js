@@ -14,5 +14,5 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .setAuthor(user.username)
         .setDescription(`${user.username} Avatar Url is \`${useravatar}\``)
         .setImage(useravatar)
-    msg.channel.send(avatarEmbed);
+    msg.channel.send({embeds:[avatarEmbed]});
 }

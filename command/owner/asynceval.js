@@ -3,7 +3,7 @@ const text = require('./string.js');
 exports.execute = async function (msg, command, args, client, D, perm, color) {
     try {
         const matches = msg.content.match(/```(?:(?<lang>\S+)\n)?\s?(?<code>[^]+?)\s?```/)?.groups || msg.content.match(/```(?<code>[^]+?)\s?```/)?.groups
-        let evaled = await eval(    matches.code)
+        let evaled = await eval(matches.code)
         
             await msg.channel.send(evaled)
     } catch (err) {
@@ -14,10 +14,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         stacktrace.excess ? `\nand ${stacktrace.excess} lines more!` : '',
         '```'
       ].join('\n');
-
-      msg.channel.stopTyping();
-      return msg.channel.send(
-        new D.MessageEmbed()
+        const embed = new D.MessageEmbed()
         .setColor('RED')
         .setFooter([
           `${err.name}`,
@@ -27,6 +24,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
           { name: '\\📥 Input', value: `\`\`\`js\n${text.truncate(text.clean(args.join(' ')),1000,'\n...').replaceAll("```","")}\`\`\``  },
           { name: '\\📤 Output', value }
         ])
-      );
+      return msg.channel.send({embeds:[embed]})
     }
 }   

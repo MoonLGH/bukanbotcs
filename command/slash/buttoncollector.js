@@ -10,9 +10,8 @@ module.exports = {
             .addComponent(new MessageButton().setCustomID('pong1').setLabel('pong').setStyle('PRIMARY'))
             .addComponent(new MessageButton().setCustomID('test1').setLabel('test').setStyle('PRIMARY'));
 
-        await interaction.reply('Hey!', {
-            components: [row]
-        });
+        await interaction.reply({content:'Hey!',components: [row]});
+
         const send = await interaction.fetchReply()
 
         const filter = (interaction) => interaction.customID === 'pong1';

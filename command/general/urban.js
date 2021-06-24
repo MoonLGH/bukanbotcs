@@ -21,7 +21,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             embed.addField("Examples", `${result[index].example.substr(0, 1000)}`)
         }
 
-        const embedsend = await msg.channel.send(embed)
+        const embedsend = await msg.channel.send({embeds:[embed]})
         await embedsend.react("🗑️")
         await embedsend.react("⬅");
         await embedsend.react("➡");
@@ -61,7 +61,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
                 embed.addField("Examples", `${result[index].example.substr(0, 1000)}`)
             }
 
-            embedsend.edit(embed)
+            embedsend.edit({embeds:[embed]})
         })
 
         backwards.on("collect", async f => {
@@ -82,7 +82,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
                 embed.addField("Examples", `${result[index].example.substr(0, 1000)}`)
             }
 
-            embedsend.edit(embed)
+            embedsend.edit({embeds:[embed]})
         })
     } catch (err){
         if(err.message === "No results founds."){

@@ -69,7 +69,7 @@ if(cool === true){
         cd.delete(msg.author.id)
     }, numb)
 }
-    const embedsend = await msg.channel.send(embed)
+    const embedsend = await msg.channel.send({embeds:[embed]})
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
@@ -104,7 +104,7 @@ if(cool === true){
             .setFooter(`${index+1} / ${image.length}`, msg.guild.iconURL({dynamic:true}))
             .setColor(color);
 
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
     backwards.on("collect", async f => {
@@ -120,6 +120,6 @@ if(cool === true){
             .setColor(color);
 
         console.log(index)
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 }

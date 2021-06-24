@@ -18,7 +18,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             if(msg.guild.premiumTier === "TIER_2" && Buffer.byteLength(vid) >= 52428800) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
             if(msg.guild.premiumTier === "TIER_3" && Buffer.byteLength(vid) >= 104857600) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
             
-            msg.channel.send("Download success ", {
+            msg.channel.send({content:"Download Success",
                 files: [{
                     attachment: vid,
                     name: title+".mp4"

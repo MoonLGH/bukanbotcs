@@ -68,7 +68,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             cd.delete(msg.author.id)
         }, numb)
     }
-    const embedsend = await msg.channel.send(embed)
+    const embedsend = await msg.channel.send({embeds:[embed]})
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
@@ -103,7 +103,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             .setFooter(`${index+1} / ${image.length}`, msg.guild.iconURL({dynamic:true}))
             .setColor(color);
 
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
     backwards.on("collect", async f => {
@@ -119,6 +119,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             .setColor(color);
 
         console.log(index)
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 }

@@ -29,5 +29,5 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     .setDescription(res.description)
     .setColor(res.color)
     .setAuthor(res.author.name,res.author.icon_url,res.author.url)
-    msg.channel.send(embed)
+    msg.channel.send({embeds:[embed]})
 }

@@ -11,5 +11,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     .addField("Author",`${advanced.author}`)
     .setTitle(`${advanced.title}`)
     .setImage(advanced.img)
-    msg.channel.send(embed)
+    // msg.channel.send(embed)
+    msg.channel.send({embeds:[embed]})
 }

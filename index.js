@@ -48,7 +48,7 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter(msg.guild.me.displayName, msg.guild.iconURL({dynamic:true}))
       
-        msg.channel.send(coin)
+        msg.channel.send({embeds:[coin]})
 
     } else if (command == 'inrole') {
       if (!msg.mentions.roles.first()) return msg.reply("Mention/Put An Role")
@@ -62,7 +62,7 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter(msg.guild.me.displayName, msg.guild.iconURL({dynamic:true}))
         .setColor(color)
-      msg.channel.send(embed)
+      msg.channel.send({embeds:[embed]})
 
     } else if (command == 'botruntime') {
       const con = msconv.ms(client.uptime, 'ms')
@@ -81,7 +81,7 @@ client.on('message', async (msg) => {
         .setTimestamp()
         .setFooter(msg.guild.me.displayName, msg.guild.iconURL({dynamic:true}))
         .setColor(color)
-      msg.channel.send(embed)
+      msg.channel.send({embeds:[embed]})
     }
 
   } catch (error) {
@@ -91,7 +91,7 @@ client.on('message', async (msg) => {
       .addField("Error Stack", error.stack.substr(0,1000))
       .setFooter(client.user.tag, client.user.displayAvatarURL())
       .setTimestamp()
-    client.channels.cache.get("827236403263569980").send(embed)
+    client.channels.cache.get("827236403263569980").send({embeds:[embed]})
   }
 })
 

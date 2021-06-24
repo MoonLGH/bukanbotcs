@@ -13,7 +13,7 @@ exports.execute = function (msg, command, args, client, D, perm, color) {
         msg.delete({
             timeout: 5000
         })
-        msg.channel.send(perm.hostmsg).then(hostmsg => hostmsg.delete({
+        msg.channel.send({embeds:[perm.hostmsg]}).then(hostmsg => hostmsg.delete({
             timeout: 5000
         }))
     }

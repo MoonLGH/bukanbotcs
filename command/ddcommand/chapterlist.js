@@ -69,7 +69,7 @@ async function getinfo(msg, D, color, command, ID) {
     embed.setFooter(`${index+1} / ${chapterlist.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
     embed.setColor(color);
 
-    const embedsend = await msg.channel.send(embed)
+    const embedsend = await msg.channel.send({embeds:[embed]})
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
@@ -119,7 +119,8 @@ async function getinfo(msg, D, color, command, ID) {
         embed.setImage(img)
         embed.setFooter(`${index+1} / ${chapterlist.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         embed.setColor(color);
-        embedsend.edit(embed)
+        // embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
     backwards.on("collect", async f => {
@@ -150,7 +151,8 @@ async function getinfo(msg, D, color, command, ID) {
         embed.setColor(color);
 
         console.log(index)
-        embedsend.edit(embed)
+        // embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
 }
