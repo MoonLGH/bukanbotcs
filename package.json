@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "discord.js": "^12.5.3",
-    "djsmaster": "github:monbrey/discord.js#message-components",
+    "djsmaster": "npm:discord.js@^13.0.0-dev.6d3d00b44577a70e840f0187d6894043677c5329",
     "dotenv": "^8.2.0",
     "genius-lyrics": "^4.2.7",
     "google-it": "^1.6.2",
@@ -33,7 +33,7 @@
     "unofficial-jisho-api": "^2.0.13",
     "urban-dictionary": "^3.0.0",
     "video-url-link": "github:YogaSakti/video-url-link",
-    "ytdl-core": "^4.5.0",
+    "ytdl-core": "github:D3SOX/node-ytdl-core",
     "ytsr": "^3.4.1"
   },
   "scripts": {
