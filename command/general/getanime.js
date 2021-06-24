@@ -22,7 +22,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         embed.addField("synonyms",`${synonyms}`)
     }
     if(synopsis){
-        embed.addField("synopsis",`${synopsis}`)
+        embed.addField("synopsis",`${synopsis.substr(0,1000)}`)
     }if(episodes){
         embed.addField("Episodes",`${episodes}`)
     }if(genres){
