@@ -7,8 +7,7 @@ module.exports = {
     description: "A Test Button On Slash Command",
     interaction: async function (interaction, client) {
         const row = new MessageActionRow()
-            .addComponent(new MessageButton().setCustomID('pong').setLabel('pong').setStyle('PRIMARY'))
-            .addComponent(new MessageButton().setCustomID('test').setLabel('test').setStyle('PRIMARY'));
+            .addComponents([new MessageButton().setCustomID('pong').setLabel('pong').setStyle('PRIMARY'),new MessageButton().setCustomID('test').setLabel('test').setStyle('PRIMARY')])
 
         await interaction.reply({content:'Hey!',components: [row]});
     },
