@@ -34,9 +34,9 @@ exports.slash = async function (client, D) {
 		//bcs 
 		await client.guilds.cache.get("801839309073678346") ?.commands.create({name:command.name,description:command.description});
 		//all
-		await client.guilds.cache.get("847364405268054076") ?.commands.create({name:command.name,description:command.description});
+		// await client.guilds.cache.get("847364405268054076") ?.commands.create({name:command.name,description:command.description});
 ///all
-		await client.application?.commands.create({name:command.name,description:command.description});
+		// await client.application?.commands.create({name:command.name,description:command.description});
 		}
 	}
 	createinteractionevent(client)
@@ -51,8 +51,7 @@ function createinteractionevent(client){
 		   if(cmd){
 			   await cmd.interaction(interaction,client)
 		   }
-		}
-		if (interaction.isMessageComponent() && interaction.componentType === 'BUTTON'){
+		}else if (interaction.isMessageComponent() && interaction.componentType === 'BUTTON'){
 			const btn = await searchbutton(interaction)
 			if(btn){
 				await btn.interaction(interaction)

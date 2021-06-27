@@ -32,7 +32,7 @@
     "unofficial-jisho-api": "^2.0.13",
     "urban-dictionary": "^3.0.0",
     "video-url-link": "github:YogaSakti/video-url-link",
-    "ytdl-core": "github:D3SOX/node-ytdl-core",
+    "ytdl-core": "^4.8.3",
     "ytsr": "^3.4.1"
   },
   "scripts": {
