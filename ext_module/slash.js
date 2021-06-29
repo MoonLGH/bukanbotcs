@@ -4,48 +4,38 @@ exports.slash = async function (client, D) {
 
 	for (const file of commandFiles) {
 		const command = require(`../command/slash/${file}`);
-		if (command.options) {
 			// dev server
 			await client.guilds.cache.get("815213544218951740") ?.commands.create({
 				name: command.name,
 				description: command.description,
-				options:command.options
+				options:command.options || []
 			})
 			//bcs 
 			await client.guilds.cache.get("801839309073678346") ?.commands.create({
 				name: command.name,
 				description: command.description,
-				options:command.options
+				options:command.options || []
 			})
 
-			//all
+			// all
 			await client.application ?.commands.create({
 				name: command.name,
 				description: command.description,
-				options:command.options
+				options:command.options || []
 			})
-		}else{
-		// dev server
-		await client.guilds.cache.get("815213544218951740") ?.commands.create({name:command.name,description:command.description});
-		// bcs 
-		await client.guilds.cache.get("801839309073678346") ?.commands.create({name:command.name,description:command.description});
-		// all
-		await client.application?.commands.create({name:command.name,description:command.description});
-		}
 	}
 	createinteractionevent(client)
 }
 
 function createinteractionevent(client){
 	client.on('interaction', async interaction => {
-		console.log(interaction)
 		if (interaction.isCommand()){
 			interaction.author = interaction.user
 			const cmd = await searchcommand(interaction)
 		   if(cmd){
 			   await cmd.interaction(interaction,client)
 		   }
-		}else if (interaction.isMessageComponent() && interaction.componentType === 'BUTTON'){
+		}else if (interaction.isButton()){
 			const btn = await searchbutton(interaction)
 			if(btn){
 				await btn.interaction(interaction)
