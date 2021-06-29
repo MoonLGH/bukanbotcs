@@ -17,7 +17,7 @@ module.exports = {
 let ytdl = require("ytdl-core")
 
 async function dl(msg) {
-    // console.log(msg.options.get("link").value)
+    console.log(msg.options.get("link").value)
     if (ytdl.validateURL(msg.options.get("link").value) === false) return msg.channel.send("Put An Valid Youtube Link")
     try {
         let info = await ytdl.getBasicInfo(msg.options.get("link").value)
@@ -43,7 +43,6 @@ async function dl(msg) {
                 }]
             })
         })
-    
     } catch (err){
         if(err){
             msg.channel.send("There Is Error When Fetching This Video Url")

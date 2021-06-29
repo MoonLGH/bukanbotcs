@@ -1,3 +1,4 @@
+const { IntegrationApplication } = require('discord.js');
 const {
     MessageActionRow,
     MessageButton
@@ -99,21 +100,23 @@ async function start(inter, interaction, confirm, enemy) {
     })
 
     let now = "x"
-    await confirm.reply({
+    await interaction.editReply({
         content: `GAME STARTED\n<@${random}> Start first As ${now}`,
         components: [row, row1, row2]
     });
-    game = confirm
+    game = await interaction.fetchReply()
     const filter = (interaction) => interaction.user.id === random;
     const collector = game.createMessageComponentInteractionCollector({
         filter: filter,
         time: 15000
     });
     collector.on("collect", async (inter) => {
+        collector.stop()
         let clicked = inter.customID - 1
+        await inter.deferUpdate()
         squares[clicked].claimed = now
         squares[clicked].but = squares[clicked].but.setDisabled(true)
-        interaction.channel.send("Done")
+        squares[clicked].but = squares[clicked].but.setLabel(now)
 
         next(interaction, inter, now, squares, users, player,game)
     })
@@ -132,35 +135,39 @@ async function next(interaction, inter, now, squares, users, player,game) {
     users.forEach(user =>{
         if(user !== player[now]){
             curret = user
-            if(player[now] === player.x){
-                now = "o"
-            }else if(player[now] === player.o){
-                now = "x"
-            }
         }
     })
-    await inter.deferUpdate()
-    await game.editReply({
-        content: `Next Move <@${curret}> Play first As ${now}`,
+    if(player[now] === player.x){
+        now = "o"
+    }else if(player[now] === player.o){
+        now = "x"
+    }
+        console.log(player[now])
+    await interaction.editReply({
+        content: `Next Move <@${curret}> Play As ${now}`,
         components: [row, row1, row2]
     })
-    const filter = (interaction) => interaction.user.id === random;
+    const filter = (interaction) => interaction.user.id === curret;
     const collector = game.createMessageComponentInteractionCollector({
         filter: filter,
         time: 15000
     });
     collector.on("collect", async (inter) => {
+        collector.stop()
         let clicked = inter.customID - 1
         squares[clicked].claimed = now
+        await inter.deferUpdate()
         squares[clicked].but = squares[clicked].but.setDisabled(true)
         squares[clicked].but = squares[clicked].but.setLabel(now)
-
         const winner = await calculateWinner(squares) 
         if(winner){
-            const userwin = await getKeyByValue(winner)
-            return interaction.channel.send(`<@${userwin}> Wins As ${winner}`)
+            const userwin = player[winner]
+            interaction.channel.send(`<@${userwin}> Wins As ${winner}`)
+            return interaction.deleteReply()
         }
-
+        if(squares[0].claimed && squares[1].claimed && squares[2].claimed && squares[3].claimed && squares[4].claimed && squares[5].claimed && squares[6].claimed && squares[7].claimed && squares[8].claimed){
+            interaction.channel.send("Draw, No One Wins")
+        }
         next(interaction, inter, now, squares, users, player,game)
     })
 }
@@ -188,8 +195,8 @@ function calculateWinner(squares) {
     ];
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
-        if (squares[a].value && squares[a].value === squares[b].value && squares[a].value === squares[c].value) {
-            return squares[a].value
+        if (squares[a].claimed && squares[a].claimed === squares[b].claimed && squares[a].claimed === squares[c].claimed) {
+            return squares[a].claimed
         }
     }
     return null;
