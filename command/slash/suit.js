@@ -119,6 +119,7 @@ async function makebutton(interaction, player, enemy, inter, confirm) {
         const win = await checkwinner(obj,inter,player)
 
         if(win){
+            main.delete()
             interaction.channel.send(`${player["1"].name} Picked ${obj.player1}\n${player["2"].name} Picked ${obj.player2}`)
             return interaction.channel.send(`${win}`)
         }
