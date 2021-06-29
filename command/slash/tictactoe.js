@@ -14,7 +14,14 @@ module.exports = {
     }],
     interaction: async function (interaction, client) {
         console.log(interaction.options.get("enemy").value)
-        const enemyid = interaction.options.get("enemy").value.replace("<@!", "").replace(">", "")
+        let enemyid 
+        if(interaction.options.get("enemy").value.startsWith("<@!")){
+            enemyid = interaction.options.get("enemy").value.replace("<@!", "").replace(">", "")
+        }else if(interaction.options.get("enemy").value.startsWith("<@")){
+            enemyid = interaction.options.get("enemy").value.replace("<@", "").replace(">", "")
+        }else {
+            return interaction.channel.send("Mention An User")
+        }
         const enemy = await interaction.guild.members.fetch(enemyid)
         const confirmation = new MessageActionRow().addComponents([new MessageButton().setCustomID(`yes`).setLabel("Accept").setStyle("SUCCESS"), new MessageButton().setCustomID(`no`).setLabel("Decline").setStyle("DANGER")])
         await interaction.reply({
