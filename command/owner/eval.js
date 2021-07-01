@@ -1,5 +1,6 @@
 const { inspect } = require('util');
 const text = require('./string.js');
+const fetch = require('node-fetch');
 exports.execute = async function (msg, command, args, client, D, perm, color) {
     try {
         const matches = msg.content.match(/```(?:(?<lang>\S+)\n)?\s?(?<code>[^]+?)\s?```/)?.groups || msg.content.match(/```(?<code>[^]+?)\s?```/)?.groups
