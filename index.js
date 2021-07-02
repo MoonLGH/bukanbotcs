@@ -32,7 +32,7 @@ function doRandHT() {
 client.on('message', async (msg) => {
   try {
     sleephandler.sleep(msg)
-     const handler = require('./ext_module/commandhandler')
+    const handler = require('./ext_module/commandhandler')
     prefix = process.env.TESTPREFIX || config.prefixes.find(p => msg.content.toLowerCase().startsWith(p));
     if (prefix == undefined || !msg.content.startsWith(prefix)) return
     const args = msg.content.slice(prefix.length).split(/ +/)
@@ -88,7 +88,7 @@ client.on('message', async (msg) => {
     const embed = new D.MessageEmbed()
       .setAuthor(client.user.tag, client.user.displayAvatarURL())
       .addField("Error Occured!", error.message.substr(0,1000))
-      .addField("Error Stack", error.stack.substr(0,1000))
+      // .addField("Error Stack", error.stack.substr(0,1000))
       .setFooter(client.user.tag, client.user.displayAvatarURL())
       .setTimestamp()
     client.channels.cache.get("827236403263569980").send({embeds:[embed]})
