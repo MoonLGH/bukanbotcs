@@ -11,10 +11,10 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
                 cool = true
                 msg.channel.send(`Cooldown For ${command} Has Setted To true`)
                 numb = 10000
-                if(args[2] && isNaN(args[2]) === false){
-                    numb = Number(args[2]) *1000
+                if (args[2] && isNaN(args[2]) === false) {
+                    numb = Number(args[2]) * 1000
                 }
-                msg.channel.send("Cooldown Active for every " + numb/1000 + " second")
+                msg.channel.send("Cooldown Active for every " + numb / 1000 + " second")
             } else {
                 msg.channel.send(`You Are Not A Admin`)
             }
@@ -37,36 +37,38 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
     let $ = cheerio.load(data.data)
 
-    $("#primary > div.exact_block > div").each(function(){
+    $("#primary > div.exact_block > div").each(function () {
         let text
         text = $(this).find("div.concept_light-wrapper.columns.zero-padding > div.concept_light-readings.japanese.japanese_gothic > div > span.text").text()
-        kanjis.push({text})
+        kanjis.push({
+            text
+        })
     })
 
     let index = 0
     let embed = new D.MessageEmbed()
-        .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setAuthor(args.join(" "), msg.guild.iconURL({dynamic:true}))
         .setTimestamp()
         .setDescription(`Use command \`\`\`${prefix}jisho ${kanjis[index].text} \`\`\` To see the kanjis on jisho`)
-        .addField("Kanji",kanjis[index].text)
-        .setFooter(`${index+1} / ${kanjis.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .addField("Kanji", kanjis[index].text)
+        .setFooter(`${index+1} / ${kanjis.length}`, msg.guild.iconURL({dynamic:true}))
         .setColor(color);
-if(cool === true){
-    if (cd.has(msg.author.id)) {
-        msg.delete({
-            timeout: 5000
-        })
-        return msg.channel.send(`Cooldown For ${numb/1000} second!`).then(cod => cod.delete({
-            timeout: 5000
-        }))
-    }
+    if (cool === true) {
+        if (cd.has(msg.author.id)) {
+            msg.delete({
+                timeout: 5000
+            })
+            return msg.channel.send(`Cooldown For ${numb/1000} second!`).then(cod => cod.delete({
+                timeout: 5000
+            }))
+        }
 
-    cd.add(msg.author.id)
-    setTimeout(() => {
-        cd.delete(msg.author.id)
-    }, numb)
-}
-    const embedsend = await msg.channel.send(embed)
+        cd.add(msg.author.id)
+        setTimeout(() => {
+            cd.delete(msg.author.id)
+        }, numb)
+    }
+    const embedsend = await msg.channel.send({embeds:[embed]})
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
@@ -89,18 +91,18 @@ if(cool === true){
     })
 
     forwards.on("collect", async f => {
-        if (index+1 <= kanjis.length) {
+        if (index + 1 <= kanjis.length) {
             index += 1
         }
         embed = new D.MessageEmbed()
-        .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-        .setTimestamp()
-        .setDescription(`Use command \`\`\`${prefix}jisho ${kanjis[index].text} \`\`\` To see the kanjis on jisho`)
-        .addField("Kanji",kanjis[index].text)
-        .setFooter(`${index+1} / ${kanjis.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-        .setColor(color);
+            .setAuthor(args.join(" "), msg.guild.iconURL({dynamic:true}))
+            .setTimestamp()
+            .setDescription(`Use command \`\`\`${prefix}jisho ${kanjis[index].text} \`\`\` To see the kanjis on jisho`)
+            .addField("Kanji", kanjis[index].text)
+            .setFooter(`${index+1} / ${kanjis.length}`, msg.guild.iconURL({dynamic:true}))
+            .setColor(color);
 
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
     backwards.on("collect", async f => {
@@ -108,13 +110,13 @@ if(cool === true){
             index -= 1
         }
         embed = new D.MessageEmbed()
-        .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-        .setTimestamp()
-        .setDescription(`Use command \`\`\`${prefix}jisho ${kanjis[index].text} \`\`\` To see the kanjis on jisho`)
-        .addField("Kanji",kanjis[index].text)
-        .setFooter(`${index+1} / ${kanjis.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
-        .setColor(color);
+            .setAuthor(args.join(" "), msg.guild.iconURL({dynamic:true}))
+            .setTimestamp()
+            .setDescription(`Use command \`\`\`${prefix}jisho ${kanjis[index].text} \`\`\` To see the kanjis on jisho`)
+            .addField("Kanji", kanjis[index].text)
+            .setFooter(`${index+1} / ${kanjis.length}`, msg.guild.iconURL({dynamic:true}))
+            .setColor(color);
 
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 }

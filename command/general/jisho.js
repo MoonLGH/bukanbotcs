@@ -25,5 +25,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .setImage(result.strokeOrderGifUri)
         .addField('Jisho Uri: ', result.uri)
 
-    msg.channel.send(embed)
+    // msg.channel.send(embed)
+    msg.channel.send({embeds:[embed]})
 }

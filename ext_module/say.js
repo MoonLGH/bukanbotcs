@@ -40,5 +40,5 @@ function log(client, msg, D, newargs) {
         .addField("Sayed!", newargs)
         .setTimestamp()
         .setFooter(client.user.username)
-    client.channels.cache.get("835446723459547146").send(logembed)
+    client.channels.cache.get("835446723459547146").send({embeds:[logembed]})
 }

@@ -54,7 +54,7 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
         .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
 
-    const embedsend = await msg.channel.send(embed)
+    const embedsend = await msg.channel.send({embeds:[embed]})
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
@@ -104,7 +104,8 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
             .setFooter(`${index+1} / ${list.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
             .setColor(color);
 
-        embedsend.edit(embed)
+        // embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
     backwards.on("collect", async f => {
@@ -126,7 +127,8 @@ exports.execute = async (msg, command, args, client, D, perm, color) => {
             .setColor(color);
 
         console.log(index)
-        embedsend.edit(embed)
+        // embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
 }

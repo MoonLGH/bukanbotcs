@@ -1,5 +1,5 @@
 const fs = require('fs');
-let color = "#RANDOM"
+let color = "#FFAAA6"
 let hhandler = require("./Hhandler.js")
 let config = require("../config.json")
 let cd = require("./cooldown")

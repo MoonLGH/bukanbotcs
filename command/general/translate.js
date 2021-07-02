@@ -32,5 +32,5 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
         .setFooter(msg.author.username, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
         .setColor(color);
 
-    msg.channel.send(tosent)
+    msg.channel.send({embeds:[tosent]})
 }

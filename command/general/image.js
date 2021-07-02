@@ -48,11 +48,11 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
 
     let index = 0
     let embed = new D.MessageEmbed()
-        .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setAuthor(args.join(" "), msg.guild.iconURL({dynamic:true}))
         .setTimestamp()
         .setDescription(`Dari: \n${image[index].from}`)
         .setImage(image[index].imageurl)
-        .setFooter(`${index+1} / ${image.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+        .setFooter(`${index+1} / ${image.length}`, msg.guild.iconURL({dynamic:true}))
         .setColor(color);
 if(cool === true){
     if (cd.has(msg.author.id)) {
@@ -69,7 +69,7 @@ if(cool === true){
         cd.delete(msg.author.id)
     }, numb)
 }
-    const embedsend = await msg.channel.send(embed)
+    const embedsend = await msg.channel.send({embeds:[embed]})
     await embedsend.react("🗑️")
     await embedsend.react("⬅");
     await embedsend.react("➡");
@@ -97,14 +97,14 @@ if(cool === true){
         }
         console.log(index)
         embed = new D.MessageEmbed()
-            .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .setAuthor(args.join(" "), msg.guild.iconURL({dynamic:true}))
             .setTimestamp()
             .setDescription(`Dari ${image[index].from}`)
             .setImage(image[index].imageurl)
-            .setFooter(`${index+1} / ${image.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .setFooter(`${index+1} / ${image.length}`, msg.guild.iconURL({dynamic:true}))
             .setColor(color);
 
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 
     backwards.on("collect", async f => {
@@ -112,14 +112,14 @@ if(cool === true){
             index -= 1
         }
         embed = new D.MessageEmbed()
-            .setAuthor(args.join(" "), 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .setAuthor(args.join(" "), msg.guild.iconURL({dynamic:true}))
             .setTimestamp()
             .setDescription(`Dari: \n${image[index].from}`)
             .setImage(image[index].imageurl)
-            .setFooter(`${index+1} / ${image.length}`, 'https://cdn.discordapp.com/icons/801839309073678346/99b51796e8c2da53a4813873408a4fb2.webp?size=256')
+            .setFooter(`${index+1} / ${image.length}`, msg.guild.iconURL({dynamic:true}))
             .setColor(color);
 
         console.log(index)
-        embedsend.edit(embed)
+        embedsend.edit({embeds:[embed]})
     })
 }

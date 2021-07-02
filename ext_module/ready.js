@@ -26,5 +26,5 @@ function sendmsg(client,D){
         embed.addField("Devbot","This is an development Bot")
     }
     embed.setFooter(client.user.tag,client.user.displayAvatarURL())
-    client.channels.cache.get("827236403263569980").send(embed)
+    client.channels.cache.get("827236403263569980").send({embeds:[embed]})
 }

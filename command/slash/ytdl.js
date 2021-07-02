@@ -1,11 +1,29 @@
+module.exports = {
+    name: "ytdl",
+    description: "Download A Youtube Video",
+    options: [{
+        type: "STRING",
+        name: "link",
+        description: "Link the video url/ID",
+        default: false,
+        required: true
+    }],
+    interaction: function (msg, client) {
+        msg.reply("Slash Interaction Sucsses")
+        dl(msg)
+    }
+}
+
 let ytdl = require("ytdl-core")
-exports.execute = async function (msg, command, args, client, D, perm, color) {
-    if (ytdl.validateURL(args[0]) === false) return msg.channel.send("Put An Valid Youtube Link")
+
+async function dl(msg) {
+    console.log(msg.options.get("link").value)
+    if (ytdl.validateURL(msg.options.get("link").value) === false) return msg.channel.send("Put An Valid Youtube Link")
     try {
-        let info = await ytdl.getBasicInfo(args[0])
+        let info = await ytdl.getBasicInfo(msg.options.get("link").value)
         let title = info.videoDetails.title
         let bufs = [];
-        let stream = ytdl(args[0], {
+        let stream = ytdl(msg.options.get("link").value, {
             filter: format => format.container === 'mp4'
         });
         stream.on('data', function (d) {
@@ -18,14 +36,13 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             if(msg.guild.premiumTier === "TIER_2" && Buffer.byteLength(vid) >= 52428800) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
             if(msg.guild.premiumTier === "TIER_3" && Buffer.byteLength(vid) >= 104857600) return msg.channel.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
             
-            msg.channel.send({content:"Download Success",
+            msg.channel.send({content:"Download Succsess",
                 files: [{
                     attachment: vid,
                     name: title+".mp4"
                 }]
             })
         })
-    
     } catch (err){
         if(err){
             msg.channel.send("There Is Error When Fetching This Video Url")
@@ -33,5 +50,4 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             console.log(err)
         }
     }
-    
 }

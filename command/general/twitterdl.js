@@ -11,10 +11,9 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
     const twtGetInfo = promisify(twitter.getInfo)
 
     const result = await twtGetInfo(args[0], {})
-    msg.channel.send("Download success ", {
+    msg.channel.send({content:"Download success ", 
         files: [{
-            attachment: result.variants[result.variants.length - 1].url,
-            name: result.full_text + ".mp4"
+            attachment: result.variants[result.variants.length - 1].url 
         }]
     })
 }

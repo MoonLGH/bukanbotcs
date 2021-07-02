@@ -99,7 +99,7 @@ async function getInfoEmbed(id, msg) {
   embed.addField("Pages", res.num_pages, true);
   if (info.tag[0])
     embed.addField("Tags", info.tag[0] ? info.tag.join(", ") : info.tag);
-  let m = await msg.channel.send(embed);
+  let m = await msg.channel.send({embeds:[embed]})
   getEmoji(id, m, msg);
 }
 
@@ -150,7 +150,7 @@ async function getEmoji(id, m, msg) {
       read.setURL(`https://nhentai.net/g/${res.id}`);
       read.setImage(doujin[pagination - 1]);
       read.setFooter(`Page ${pagination} of ${doujin.length} / ${res.id}`);
-      let r = await msg.channel.send(read);
+      let r = await msg.channel.send({embeds:[read]});
       return getRead(res, read, r, msg, pagination);
     });
 
@@ -160,7 +160,7 @@ async function getEmoji(id, m, msg) {
 
     download.on("collect", async d => {
       let embed = await download(res, "zip");
-      msg.channel.send(embed);
+      msg.channel.send({embeds:[embed]})
     });
 
 
