@@ -29,7 +29,7 @@ function doRandHT() {
   return rand[Math.floor(Math.random() * rand.length)]
 } 
 
-client.on('message', async (msg) => {
+client.on('messageCreate', async (msg) => {
   try {
     sleephandler.sleep(msg)
     const handler = require('./ext_module/commandhandler')
