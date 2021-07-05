@@ -71,7 +71,6 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
             res.pipe(file)
 
             res.on('data', c => {
-                currentSize += c.length;
             })
             res.on('end', _ => {
                 console.log('✅  ' + _colors.green('Success Download File : ' + filename))
