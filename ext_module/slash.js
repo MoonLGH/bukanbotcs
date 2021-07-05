@@ -34,7 +34,7 @@ exports.slash = async function (client, D) {
 }
 
 function createinteractionevent(client){
-	client.on('interaction', async interaction => {
+	client.on('interactionCreate', async interaction => {
 		if (interaction.isCommand()){
 			interaction.author = interaction.user
 			const cmd = await searchcommand(interaction)
