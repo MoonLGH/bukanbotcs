@@ -6,9 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "engines": {
-    "node": "15.5.1"
-  },
   "dependencies": {
     "@vitalets/google-translate-api": "^5.1.0",
     "alexa-bot-api": "^0.2.1",
@@ -36,7 +33,6 @@
     "unofficial-jisho-api": "^2.0.13",
     "urban-dictionary": "^3.0.0",
     "url": "^0.11.0",
-    "video-url-link": "github:YogaSakti/video-url-link",
     "ytdl-core": "^4.8.3",
     "ytsr": "^3.4.1"
   },
