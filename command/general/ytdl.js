@@ -25,11 +25,14 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
                 }]
             })
         })
+        stream.on("error", (err) =>{
+            msg.channel.send("Error " + err.message.substr(0,1000))
+        })
     
     } catch (err){
         if(err){
             msg.channel.send("There Is Error When Fetching This Video Url")
-            msg.channel.send("Is This Video Privated Or Region Locked ??")
+            // msg.channel.send("Is This Video Privated Or Region Locked ??")
             console.log(err)
         }
     }

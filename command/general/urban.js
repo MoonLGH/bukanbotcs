@@ -82,6 +82,7 @@ exports.execute = async function (msg, command, args, client, D, perm, color) {
                 embed.addField("Examples", `${result[index].example.substr(0, 1000)}`)
             }
 
+            
             embedsend.edit({embeds:[embed]})
         })
     } catch (err){
