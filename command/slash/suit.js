@@ -36,7 +36,7 @@ module.exports = {
             }
         }
 
-        const confirmation = new MessageActionRow().addComponents([new MessageButton().setCustomID(`yes`).setLabel("Accept").setStyle("SUCCESS"), new MessageButton().setCustomID(`no`).setLabel("Decline").setStyle("DANGER")])
+        const confirmation = new MessageActionRow().addComponents([new MessageButton().setCustomId(`yes`).setLabel("Accept").setStyle("SUCCESS"), new MessageButton().setCustomId(`no`).setLabel("Decline").setStyle("DANGER")])
         await interaction.reply({
             content: `<@!${enemyid}> ${interaction.member.displayName} Has challanged You to play RockPaperScissors\n you got 15 second to reply`,
             components: [confirmation]
@@ -50,12 +50,12 @@ module.exports = {
         });
 
         collector.on("collect", async (inter) => {
-            if (inter.customID === "yes") {
+            if (inter.customId === "yes") {
                 await inter.deferUpdate()
                 await interaction.deleteReply()
                 interaction.channel.send(`${enemy.displayName} Has Accepted.`)
                 makebutton(interaction, player, enemy, inter, confirm)
-            } else if (inter.customID === "no") {
+            } else if (inter.customId === "no") {
                 await inter.deferUpdate()
                 await interaction.deleteReply()
                 return interaction.channel.send(`${enemy.displayName} Has Decline.`)
@@ -68,17 +68,17 @@ async function makebutton(interaction, player, enemy, inter, confirm) {
 
     //Buttons
     let scissorsbtn = new MessageButton()
-        .setCustomID("gunting")
+        .setCustomId("gunting")
         .setLabel("Scissors")
         .setStyle("PRIMARY")
         .setEmoji("✌️")
     let rockbtn = new MessageButton()
-        .setCustomID("batu")
+        .setCustomId("batu")
         .setLabel("Rock")
         .setStyle("PRIMARY")
         .setEmoji("🤜")
     let paperbtn = new MessageButton()
-        .setCustomID("kertas")
+        .setCustomId("kertas")
         .setLabel("Paper")
         .setStyle("PRIMARY")
         .setEmoji("✋")
@@ -107,11 +107,11 @@ async function makebutton(interaction, player, enemy, inter, confirm) {
             usernumber = "2"
         }
 
-        if(inter.customID === "gunting"){
+        if(inter.customId === "gunting"){
             obj[`player${usernumber}`] = "✌️"
-        }else if(inter.customID === "batu"){
+        }else if(inter.customId === "batu"){
             obj[`player${usernumber}`] ="🤜"
-        }else if(inter.customID === "kertas"){
+        }else if(inter.customId === "kertas"){
             obj[`player${usernumber}`] ="✋"
         }
 
