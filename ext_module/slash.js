@@ -23,12 +23,7 @@ exports.slash = async function (client, D) {
 				options:command.options || []
 			})
 
-			// all
-			// await client.application ?.commands.create({
-			// 	name: command.name,
-			// 	description: command.description,
-			// 	options:command.options || []
-			// })
+	
 	}
 	createinteractionevent(client)
 }
