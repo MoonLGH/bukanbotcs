@@ -17,9 +17,9 @@ module.exports = {
     interaction: async function (interaction, client) {
         let enemyid
         if (interaction.options.get("enemy").value.startsWith("<@!")) {
-            enemyid = interaction.options.get("enemy").value.replace("<@!", "").replace(">", "")
+            enemyid = interaction.options.get("enemy").value.replace("<@!", "").replace(">", "").replaceAll(" ","")
         } else if (interaction.options.get("enemy").value.startsWith("<@")) {
-            enemyid = interaction.options.get("enemy").value.replace("<@", "").replace(">", "")
+            enemyid = interaction.options.get("enemy").value.replace("<@", "").replace(">", "").replaceAll(" ","")
         } else {
             return interaction.channel.send("Mention An User")
         }
