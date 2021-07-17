@@ -38,13 +38,13 @@ module.exports = {
 
         const confirmation = new MessageActionRow().addComponents([new MessageButton().setCustomId(`yes`).setLabel("Accept").setStyle("SUCCESS"), new MessageButton().setCustomId(`no`).setLabel("Decline").setStyle("DANGER")])
         await interaction.reply({
-            content: `<@!${enemyid}> ${interaction.member.displayName} Has challanged You to play RockPaperScissors\n you got 15 second to reply`,
+            content: `<@${enemyid}> ${interaction.member.displayName} Has challanged You to play RockPaperScissors\n you got 15 second to reply`,
             components: [confirmation]
         })
 
         const confirm = await interaction.fetchReply()
         const filter = (interaction) => interaction.user.id === enemyid;
-        const collector = confirm.createMessageComponentInteractionCollector({
+        const collector = confirm.createMessageComponentCollector({
             filter: filter,
             time: 15000
         });
@@ -91,7 +91,7 @@ async function makebutton(interaction, player, enemy, inter, confirm) {
     })
     
     const filter = (interaction) => interaction.user.id === player["2"].id || interaction.user.id === player["1"].id;
-    maincollector = main.createMessageComponentInteractionCollector({
+    maincollector = main.createMessageComponentCollector({
         filter: filter,
         time: 15000
     })
