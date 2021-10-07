@@ -5,21 +5,26 @@ const fs = require("fs");
 async function addpublic(client: Client,msg:Message) {
   await console.log("Loading Slash Commands");
   const commandFiles = fs
-    .readdirSync("./src/slash/")
+    .readdirSync("./src/SlashCommands/")
     .filter((file: any) => file.endsWith(".ts"));
   
-    const sendmsg = await msg.channel.send("Loading...")
+    let sendmsg = await msg.channel.send("Loading...")
     let commands = []
     for (const file of commandFiles) {
-    const command = require(`../../slash/${file}`);
+    const command = require(`../../SlashCommands/${file}`);
     await console.log(`Slash Loading: ${file}`);
-      
-    commands.push({
-      name: command.name,
-      description: command.description,
-      options: command.options || [],
-    });
-    sendmsg.edit(`${sendmsg.content}\n${commands.map(cmd => cmd.name).join("\n")} Loaded`)
+    
+    if(!command.name || !command.description){
+      sendmsg = await sendmsg.edit(`${sendmsg.content}\n${file} Failed to load`)
+    }else{
+      commands.push({
+        name: command.name,
+        description: command.description,
+        options: command.options || [],
+      });
+      // sendmsg.edit(`${sendmsg.content}\n${commands.map(cmd => cmd.name).join("\n")} Loaded`)
+      sendmsg = await sendmsg.edit(`${sendmsg.content}\n${command.name} Loaded`)
+    }
   }
 
   await client.application?.commands.set(commands)
@@ -31,20 +36,27 @@ async function addpublic(client: Client,msg:Message) {
 async function addhere(client: Client,msg:Message) {
   await console.log("Loading Slash Commands");
   const commandFiles = fs
-    .readdirSync("./src/slash/")
+    .readdirSync("./src/SlashCommands/")
     .filter((file: any) => file.endsWith(".ts"));
-  const sendmsg = await msg.channel.send("Loading...")
+  let sendmsg = await msg.channel.send("Loading...")
   let commands = []
   for (const file of commandFiles) {
-    const command = require(`../../slash/${file}`);
+    const command = require(`../../SlashCommands/${file}`);
     await console.log(`Slash Loading: ${file}`);
-  
-    commands.push({
-      name: command.name,
-      description: command.description,
-      options: command.options || [],
-    });
-    sendmsg.edit(`${sendmsg.content}\n${commands.map(cmd => cmd.name).join("\n")} \n Loaded`)
+
+    if(!command.name || !command.description){
+      sendmsg = await sendmsg.edit(`${sendmsg.content}\n${file} Failed to load`)
+    }else{
+      commands.push({
+        name: command.name,
+        description: command.description,
+        options: command.options || [],
+      });
+      sendmsg = await sendmsg.edit(`${sendmsg.content}\n${command.name} Loaded`)
+      // sendmsg.edit(`${sendmsg.content}\n${commands.map(cmd => cmd.name).join("\n")} Loaded`)  
+    }
+
+    
   }
 
   await client.guilds.cache.get((msg.guild as Guild)?.id)?.commands.set(commands);
