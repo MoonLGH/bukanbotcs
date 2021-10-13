@@ -3,7 +3,7 @@ import path from "path";
 import { Client } from "discord.js";
 export function setup(client: Client) {
 	const eventFiles = fs
-		.readdirSync(path.join(process.cwd(),"./src/Events/"))
+		.readdirSync(path.join(process.cwd(),"/src/Events/"))
 		.filter((file:string) => file.endsWith(".ts"));
 
 	for (const file of eventFiles) {
