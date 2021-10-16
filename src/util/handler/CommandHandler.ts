@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 import { handleCommand, search, Vars } from "../others/handleutil";
 const def = require("../../default.js")
 
-async function getCommand(command: String,args: Array<String>) {
+async function getCommand(command: string,args: Array<string>) {
    let getcmd = null;
    if (search(command, Vars.forwardable)) {
       let folder = command;
@@ -14,12 +14,13 @@ async function getCommand(command: String,args: Array<String>) {
    return getcmd;
 }
 
-export async function handler(msg: Message,command: String,args: Array<String>,prefix: string) {
+export async function handler(msg: Message,command: string,args: Array<string>,prefix: string) {
    let getcmd: any = await getCommand(command, args);
    if (!getcmd) {
       getcmd = await handleCommand(command);
    }
    if (getcmd) {
+      console.log(getcmd)
       if(getcmd.folder === "owner" && msg.author.id !== def.ownerid) return msg.reply("You are not the bot owner, and cant do this type of command")
       if(getcmd.other.guildOnly && msg.channel?.type !== "GUILD_TEXT") return msg.channel.send(`This command can only be used in a Server TextChannel`);
       else if(getcmd.other.DMOnly && msg.channel?.type !== "DM") return msg.channel.send(`This command can only be used in a DM`);
