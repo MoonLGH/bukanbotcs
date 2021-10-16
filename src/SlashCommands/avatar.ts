@@ -1,5 +1,5 @@
 import {
-    ButtonInteraction, CommandInteraction, GuildMember, Message, MessageCollector,MessageEmbed,Collection
+     CommandInteraction, GuildMember,MessageEmbed,Collection
 } from 'discord.js'
 module.exports = {
     name: "avatar",
