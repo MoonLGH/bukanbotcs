@@ -10,9 +10,10 @@ module.exports = {
         "description": "YT Video URL"
     }],
     interaction: async function (interaction:CommandInteraction) {
-        console.log("logged")
+
         let url = interaction.options.getString("url",true)
         if (!ytdl.validateURL(url)) return interaction.reply("Put An Valid Youtube Link")
+        interaction.reply("Downloading...")
         try {
             let info = await ytdl.getBasicInfo(url)
             let title = info.videoDetails.title
@@ -30,7 +31,7 @@ module.exports = {
                 if(interaction.guild?.premiumTier === "TIER_2" && Buffer.byteLength(vid) >= 52428800) return interaction.channel?.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
                 if(interaction.guild?.premiumTier === "TIER_3" && Buffer.byteLength(vid) >= 104857600) return interaction.channel?.send(`The Video Is Too Big Try Download It Yourself in \n https://ssyoutube.com/`)
                 
-                interaction.reply({content:"Download Succsess",
+                interaction.channel?.send({content:"Download Succsess",
                     files: [{
                         attachment: vid,
                         name: title+".mp4"
@@ -39,8 +40,8 @@ module.exports = {
             })
         } catch (err){
             if(err){
-                interaction.reply("There Is Error When Fetching This Video Url")
-                interaction.reply("Is This Video Privated Or Region Locked ??")
+                interaction.channel?.send("There Is Error When Fetching This Video Url")
+                interaction.channel?.send("Is This Video Privated Or Region Locked ??")
                 console.log(err)
             }
         }
