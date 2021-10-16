@@ -1,11 +1,11 @@
-const fs = require("fs")
-import path from "path";
+import fs from "fs";
 import { Client } from "discord.js";
 export function setup(client: Client) {
 	const eventFiles = fs
-		.readdirSync(path.join(process.cwd(),"/src/Events/"))
+		.readdirSync("src/Events/")
 		.filter((file:string) => file.endsWith(".ts"));
 
+		console.log("Event Handle Started")
 	for (const file of eventFiles) {
 		const event = require(`../../Events/${file}`);
 		if (event.once) {
