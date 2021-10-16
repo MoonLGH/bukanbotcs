@@ -41,7 +41,6 @@ module.exports = {
         } catch (err){
             if(err){
                 interaction.channel?.send("There Is Error When Fetching This Video Url")
-                interaction.channel?.send("Is This Video Privated Or Region Locked ??")
                 console.log(err)
             }
         }
