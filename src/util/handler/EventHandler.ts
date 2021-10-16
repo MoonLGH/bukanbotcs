@@ -2,7 +2,7 @@ import fs from "fs";
 import { Client } from "discord.js";
 export function setup(client: Client) {
 	const eventFiles = fs
-		.readdirSync("./")
+		.readdirSync("./src")
 		// .filter((file:string) => file.endsWith(".ts"));
 
 		console.log("Event Handle Started")
