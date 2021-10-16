@@ -6,7 +6,7 @@ export function setup(client: Client) {
 		.filter((file:string) => file.endsWith(".ts"));
 
 	for (const file of eventFiles) {
-		const event = require(`../../Events/${file}`);
+		const event = require(`../../events/${file}`);
 		if (event.once) {
 			client.once(event.name, (...args: any) => event.execute(...args, client));
 		} else {
