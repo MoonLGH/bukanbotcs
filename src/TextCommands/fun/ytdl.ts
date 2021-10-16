@@ -1,9 +1,9 @@
 import {Message} from "discord.js"
 import ytdl from "ytdl-core"
 module.exports = {
-    "name": "banner",
-    "usage": `${require("../../default").defaultprefix}banner [Id/Member Nick/Mentions]`,
-    "description": "Reply With Pong",
+    "name": "ytdl",
+    "usage": `${require("../../default").defaultprefix}ytdl url`,
+    "description": "download a youtube video",
     "execute": async function (msg: Message, command: String, args: Array < any > , prefix: string) {
         if (ytdl.validateURL(args[0]) === false) return msg.channel.send("Put An Valid Youtube Link")
     try {
