@@ -20,7 +20,6 @@ export async function handler(msg: Message,command: String,args: Array<String>,p
       getcmd = await handleCommand(command);
    }
    if (getcmd) {
-      console.log(getcmd)
       if(getcmd.folder === "owner" && msg.author.id !== def.ownerid) return msg.reply("You are not the bot owner, and cant do this type of command")
       if(getcmd.other.guildOnly && msg.channel?.type !== "GUILD_TEXT") return msg.channel.send(`This command can only be used in a Server TextChannel`);
       else if(getcmd.other.DMOnly && msg.channel?.type !== "DM") return msg.channel.send(`This command can only be used in a DM`);
