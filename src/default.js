@@ -1,7 +1,7 @@
 const dprefix = "/"
 module.exports ={
     defaultprefix : dprefix,
-    defaultprefixes: ["Bcs+","Bcs-","Bcs!"],
+    defaultprefixes: ["+","Bcs+","Bcs-","Bcs!"],
     botconsole:"831195323820408902",
     botlog:"827236403263569980",
     boterror:"827236403263569980",
