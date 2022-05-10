@@ -1,4 +1,4 @@
-#THIS REPOSITORY IS DISCONTINUED, CONTINUED VERSION IS IN [Tsukari-Bot](https://github.com/MoonLGH/Tsukari-Bot.git)
+# THIS REPOSITORY IS DISCONTINUED, CONTINUED VERSION IS IN [Tsukari-Bot](https://github.com/MoonLGH/Tsukari-Bot.git)
 
 # Tsukari (月の光/Tsuki no hikari) Bot
 Tsukari is an OpenSource Discord Bot that created with [TS(TypeScript)](https://www.typescriptlang.org/) And [Discord.JS](https://discord.js.org/)
